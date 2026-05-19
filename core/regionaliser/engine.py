@@ -28,6 +28,8 @@ class RegionaliseOptions:
     setting: str = "neutral"
     density: str = "light"
     explain: bool = False
+    use_stanza: bool = False
+    protected_spans: list[tuple[int, int]] = field(default_factory=list)
     db_path: Path = DEFAULT_DB
 
 
@@ -197,11 +199,14 @@ class Regionaliser:
                 raise ValueError(f"Unsupported region {opts.region!r}; expected one of {sorted(available)}")
             out = text
             changes: list[dict[str, str]] = []
+            stanza_notes: list[str] = []
+            if opts.use_stanza:
+                opts.protected_spans, stanza_notes = self._stanza_protected_spans(text)
             out = self._apply_vocabulary(con, out, opts, changes)
             out = self._apply_spelling(con, out, opts, changes)
             out = self._apply_register(con, out, opts, changes)
             out = self._apply_light_lexicon(con, out, opts, changes)
-            notes = self._notes(con, opts)
+            notes = self._notes(con, opts) + stanza_notes
             return RegionaliseResult(text=out, region=opts.region, changes=changes, notes=notes)
 
     def detect(self, text: str, regions: Iterable[str] | None = None, max_evidence: int = 12) -> DetectionResult:
@@ -347,7 +352,7 @@ class Regionaliser:
         ]
         return NamedEntityResult(text=text, lang=lang, entities=entities, notes=notes)
 
-    def analyse(self, text: str, regions: Iterable[str] | None = None, max_terms: int = 80) -> AnalyseResult:
+    def analyse(self, text: str, regions: Iterable[str] | None = None, max_terms: int = 80, use_stanza: bool = False) -> AnalyseResult:
         """Diff text against baseline English and known regional evidence."""
         with sqlite3.connect(self.db_path) as con:
             con.row_factory = sqlite3.Row
@@ -355,6 +360,12 @@ class Regionaliser:
             tokens = tokenize_words(text)
             counts: dict[str, int] = {}
             first_forms: dict[str, str] = {}
+            protected_terms: set[str] = set()
+            stanza_notes: list[str] = []
+            if use_stanza:
+                protected_spans, stanza_notes = self._stanza_protected_spans(text)
+                for start, end in protected_spans:
+                    protected_terms.update(t.lower().replace("’", "'") for t in tokenize_words(text[start:end]))
             for token in tokens:
                 key = token.lower().replace("’", "'")
                 counts[key] = counts.get(key, 0) + 1
@@ -362,6 +373,8 @@ class Regionaliser:
             non_baseline = []
             known_terms = self._known_terms(con)
             for word, count in sorted(counts.items(), key=lambda kv: (-kv[1], kv[0])):
+                if word in protected_terms:
+                    continue
                 if word in baseline:
                     continue
                 if len(word) < 2 or word.isdigit():
@@ -377,7 +390,7 @@ class Regionaliser:
             notes = [
                 "Baseline diff flags terms absent from the installed broad English wordlist; this includes names, typos, domain terms, slang, transcription artefacts, and localisms.",
                 "Use repeated non-baseline terms plus detect evidence as lexicon candidates; do not assume every flagged word is regional.",
-            ]
+            ] + stanza_notes
             return AnalyseResult(text=text, tokens=tokens, non_baseline=non_baseline, known_evidence=evidence, baseline_words=len(baseline), notes=notes)
 
     def sports(self, region: str, locales: Iterable[str] | None = None, max_rows: int = 24) -> SportsLocalityResult:
@@ -510,6 +523,27 @@ class Regionaliser:
     def _rows(self, con: sqlite3.Connection, dataset: str, region: str) -> list[sqlite3.Row]:
         return list(con.execute("select data from entries where region=? and dataset=?", (region, dataset)))
 
+    def _stanza_protected_spans(self, text: str) -> tuple[list[tuple[int, int]], list[str]]:
+        """Return named-entity spans to protect when optional Stanza is enabled.
+
+        This is a preference-driven enhancement for the full localiser skill. If
+        Stanza or its models are unavailable, the caller still gets deterministic
+        output plus an explanatory note.
+        """
+        try:
+            result = self.named_entities(text)
+        except RuntimeError as exc:
+            return [], [f"Stanza protection requested but unavailable: {exc}"]
+        spans: list[tuple[int, int]] = []
+        for ent in result.entities:
+            start = ent.get("start_char")
+            end = ent.get("end_char")
+            if isinstance(start, int) and isinstance(end, int) and 0 <= start < end <= len(text):
+                spans.append((start, end))
+        if spans:
+            return spans, [f"Stanza protection enabled: protected {len(spans)} named-entity span(s) from rewrite/diff false positives."]
+        return [], ["Stanza protection enabled: no named-entity spans found."]
+
     def _context_rows(self, con: sqlite3.Connection, region: str, dataset: str, locales: list[str], max_rows: int) -> list[dict[str, object]]:
         wanted_lower = [l.lower() for l in locales]
         rows: list[dict[str, object]] = []
@@ -553,13 +587,13 @@ class Regionaliser:
                 for source in split_terms(value):
                     if source and source.lower() != local.lower():
                         pairs.append((source, local, "vocabulary"))
-        return replace_pairs(text, pairs, changes)
+        return replace_pairs(text, pairs, changes, protected_spans=opts.protected_spans)
 
     def _apply_spelling(self, con, text: str, opts: RegionaliseOptions, changes):
         pairs: list[tuple[str, str, str]] = []
         for row in self._rows(con, "spelling", opts.region):
             data = json.loads(row["data"])
-            guarded = apply_contextual_spelling_rule(text, data, changes)
+            guarded = apply_contextual_spelling_rule(text, data, changes, protected_spans=opts.protected_spans)
             if guarded is not None:
                 text = guarded
                 continue
@@ -569,7 +603,7 @@ class Regionaliser:
                 pairs.extend((avoid, use, "spelling") for use, avoid in zip(uses, avoids))
             elif uses and avoids:
                 pairs.extend((avoid, uses[0], "spelling") for avoid in avoids)
-        return replace_pairs(text, pairs, changes)
+        return replace_pairs(text, pairs, changes, protected_spans=opts.protected_spans)
 
     def _apply_register(self, con, text: str, opts: RegionaliseOptions, changes):
         register = opts.register.lower()
@@ -579,9 +613,9 @@ class Regionaliser:
         formal_pairs = [("get", "receive"), ("help", "assist"), ("buy", "purchase"), ("kids", "children")]
         casual_pairs = [("children", "kids"), ("purchase", "buy"), ("receive", "get")]
         if register in {"formal", "institutional"}:
-            return replace_pairs(text, [(a, b, "register") for a, b in formal_pairs], changes)
+            return replace_pairs(text, [(a, b, "register") for a, b in formal_pairs], changes, protected_spans=opts.protected_spans)
         if register in {"casual", "conversational"}:
-            return replace_pairs(text, [(a, b, "register") for a, b in casual_pairs], changes)
+            return replace_pairs(text, [(a, b, "register") for a, b in casual_pairs], changes, protected_spans=opts.protected_spans)
         return text
 
     def _apply_light_lexicon(self, con, text: str, opts: RegionaliseOptions, changes):
@@ -610,7 +644,7 @@ class Regionaliser:
         for src, dst, kind in wanted:
             if len(changes) - before_count >= limit:
                 break
-            out = replace_pairs(out, [(src, dst, kind)], changes, max_replacements=1)
+            out = replace_pairs(out, [(src, dst, kind)], changes, max_replacements=1, protected_spans=opts.protected_spans)
         return out
 
     def _detect_region_evidence(self, con, text: str, region: str) -> list[dict[str, object]]:
@@ -756,7 +790,13 @@ def clean_term(value: str) -> str:
     return str(value or "").strip().strip('"“”')
 
 
-def replace_pairs(text: str, pairs: Iterable[tuple[str, str, str]], changes: list[dict[str, str]], max_replacements: int | None = None) -> str:
+def replace_pairs(
+    text: str,
+    pairs: Iterable[tuple[str, str, str]],
+    changes: list[dict[str, str]],
+    max_replacements: int | None = None,
+    protected_spans: list[tuple[int, int]] | None = None,
+) -> str:
     out = text
     made = 0
     # Longest first avoids replacing "gas" before "gas station".
@@ -769,6 +809,8 @@ def replace_pairs(text: str, pairs: Iterable[tuple[str, str, str]], changes: lis
         def repl(match):
             nonlocal made
             if max_replacements is not None and made >= max_replacements:
+                return match.group(0)
+            if span_overlaps(match.start(), match.end(), protected_spans or []):
                 return match.group(0)
             made += 1
             replacement = preserve_case(match.group(0), target)
@@ -788,7 +830,12 @@ def contains_term(text: str, term: str) -> bool:
     return bool(pattern.search(text))
 
 
-def apply_contextual_spelling_rule(text: str, data: dict[str, object], changes: list[dict[str, str]]) -> str | None:
+def apply_contextual_spelling_rule(
+    text: str,
+    data: dict[str, object],
+    changes: list[dict[str, str]],
+    protected_spans: list[tuple[int, int]] | None = None,
+) -> str | None:
     """Apply guarded spelling rules for forms that need syntax/meaning.
 
     Some Commonwealth spellings are not simple US<->AU/UK replacements:
@@ -812,6 +859,7 @@ def apply_contextual_spelling_rule(text: str, data: dict[str, object], changes: 
             allow_next=VERB_PRACTICE_NEXT,
             block_next=NOUN_PRACTICE_NEXT,
             note="AU/UK noun/verb split: changed only high-confidence verb use; noun uses such as practice areas stay practice.",
+            protected_spans=protected_spans,
         )
 
     if "licence noun/license verb" in use_raw and "license" in avoid_raw:
@@ -825,6 +873,7 @@ def apply_contextual_spelling_rule(text: str, data: dict[str, object], changes: 
             block_next=VERB_LICENSE_NEXT,
             allow_boundary=True,
             note="AU/UK noun/verb split: changed only high-confidence noun use; verb uses stay license.",
+            protected_spans=protected_spans,
         )
 
     if ("cheque" in use_raw and "check" in avoid_raw) and ("bank" in notes or "bank" in use_raw or "bank" in avoid_raw):
@@ -838,6 +887,7 @@ def apply_contextual_spelling_rule(text: str, data: dict[str, object], changes: 
             allow_next=BANK_CHEQUE_NEXT,
             block_next=VERIFY_CHECK_NEXT,
             note="AU/UK/CA cheque/check split: changed only banking-instrument contexts; verify/check uses stay check.",
+            protected_spans=protected_spans,
         )
 
     return None
@@ -874,6 +924,7 @@ def replace_contextual_word(
     allow_next: set[str] | None = None,
     block_next: set[str] | None = None,
     allow_boundary: bool = False,
+    protected_spans: list[tuple[int, int]] | None = None,
     note: str = "",
 ) -> str:
     token_re = re.compile(r"(?<![\w’'-])" + re.escape(source) + r"(?![\w’'-])", re.IGNORECASE)
@@ -892,6 +943,8 @@ def replace_contextual_word(
         prev_word = word_before(match.start())
         next_word = word_after(match.end())
         if block_next and next_word in block_next:
+            return match.group(0)
+        if span_overlaps(match.start(), match.end(), protected_spans or []):
             return match.group(0)
         prev_ok = bool(allow_prev and prev_word in allow_prev)
         next_ok = bool(allow_next and next_word in allow_next)
@@ -914,6 +967,10 @@ def at_clause_or_line_boundary(after: str) -> bool:
         return True
     # Treat punctuation or a line break before the next word as a noun-heading boundary.
     return bool(re.match(r"^[\s\.:;!?)\]}>#-]*(?:\n|$)", after))
+
+
+def span_overlaps(start: int, end: int, spans: list[tuple[int, int]]) -> bool:
+    return any(start < span_end and end > span_start for span_start, span_end in spans)
 
 
 def confidence_from_scores(top: float, second: float) -> float:

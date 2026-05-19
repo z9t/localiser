@@ -70,12 +70,26 @@ python3 core/scripts/build_db.py --regions au,us,uk,ca
 python3 core/scripts/validate.py
 ```
 
-Optional NER:
+Optional NER/Stanza protection for the full localiser:
 
 ```bash
 python3 -m pip install '.[ner]'
 python3 core/scripts/install_stanza_models.py --lang en
 ```
+
+Preference controls:
+
+```bash
+# one command
+python3 core/scripts/regionalise.py --region au --stanza --json "License Group liked the color."
+python3 core/scripts/regionalise.py --region au --no-stanza --json "License Group liked the color."
+
+# profile/session default
+export REGIONALISER_USE_STANZA=1   # on
+unset REGIONALISER_USE_STANZA      # off
+```
+
+When enabled for rewrite/analyse, Stanza NER protects named entities from false positives. If Stanza or models are missing, Regionaliser keeps the deterministic output and adds an explanatory note instead of failing. Explicit `--ner` extraction still fails with setup guidance because it is specifically asking for Stanza output.
 
 ## Core CLI
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -44,6 +45,10 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("-o", "--output", help="Write result/report to a file instead of stdout.")
     p.add_argument("--json", action="store_true", help="Emit structured JSON.")
     p.add_argument("--explain", action="store_true", help="Include notes/changes; implied by --json, otherwise printed to stderr.")
+    stanza_default = os.environ.get("REGIONALISER_USE_STANZA", "").lower() in {"1", "true", "yes", "on"}
+    stanza_group = p.add_mutually_exclusive_group()
+    stanza_group.add_argument("--stanza", dest="use_stanza", action="store_true", default=stanza_default, help="Use optional Stanza NER as a protection layer for full localiser rewrites/analyse.")
+    stanza_group.add_argument("--no-stanza", dest="use_stanza", action="store_false", help="Disable optional Stanza protection even if REGIONALISER_USE_STANZA is set.")
     return p
 
 
@@ -80,7 +85,7 @@ def main(argv: list[str] | None = None) -> int:
         return emit(rendered, args.output)
 
     if args.analyse:
-        result = engine.analyse(text, regions=regions)
+        result = engine.analyse(text, regions=regions, use_stanza=args.use_stanza)
         rendered = json.dumps(result.as_dict(), ensure_ascii=False, indent=2) if args.json else render_analysis_text(result)
         return emit(rendered, args.output)
 
@@ -116,6 +121,7 @@ def main(argv: list[str] | None = None) -> int:
         setting=args.setting,
         density=args.density,
         explain=args.explain or args.json,
+        use_stanza=args.use_stanza,
     )
     sports = engine.sports(args.region, locales=locales, max_rows=args.sports_max) if args.sports else None
     context = engine.cultural_context(args.region, locales=locales, generation=args.generation, max_rows=args.context_max) if (args.context or args.culture) else None

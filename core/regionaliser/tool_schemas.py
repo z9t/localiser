@@ -27,6 +27,7 @@ LOCALISER_REGIONALISE_TEXT = {
             "setting": {"type": "string", "default": "neutral"},
             "density": {"type": "string", "enum": ["none", "light", "medium", "high"], "default": "light"},
             "explain": {"type": "boolean", "default": True},
+            "use_stanza": {"type": "boolean", "default": False, "description": "Full localiser only: use optional Stanza NER to protect named entities from rewrite false positives. Requires stanza/models; unavailable Stanza returns notes and keeps deterministic output."},
             "db_path": {"type": "string", "description": "Optional path to regionaliser.sqlite."},
         },
         "required": ["text", "region"],

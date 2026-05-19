@@ -57,6 +57,73 @@ class RegionaliserCliTests(unittest.TestCase):
         self.assertIn("practise law", payload["text"])
         self.assertIn("bank cheque", payload["text"])
 
+    def test_stanza_preference_protects_named_entities_when_enabled(self):
+        class FakeEntity:
+            def __init__(self, text, typ, start, end):
+                self.text = text
+                self.type = typ
+                self.start_char = start
+                self.end_char = end
+
+        class FakeDoc:
+            ents = [FakeEntity("License Group", "ORG", 0, 13)]
+
+        class FakePipeline:
+            def __init__(self, **kwargs):
+                self.kwargs = kwargs
+
+            def __call__(self, text):
+                return FakeDoc()
+
+        previous = sys.modules.get("stanza")
+        fake_stanza = types.ModuleType("stanza")
+        setattr(fake_stanza, "Pipeline", FakePipeline)
+        sys.modules["stanza"] = fake_stanza
+        try:
+            result = Regionaliser().regionalise("License Group liked the color.", region="au", density="none", use_stanza=True)
+        finally:
+            if previous is None:
+                sys.modules.pop("stanza", None)
+            else:
+                sys.modules["stanza"] = previous
+        self.assertIn("License Group", result.text)
+        self.assertIn("colour", result.text)
+        self.assertTrue(any("Stanza" in note for note in result.notes))
+
+    def test_stanza_preference_filters_named_entities_from_analysis(self):
+        class FakeEntity:
+            def __init__(self, text, typ, start, end):
+                self.text = text
+                self.type = typ
+                self.start_char = start
+                self.end_char = end
+
+        class FakeDoc:
+            ents = [FakeEntity("Qantas", "ORG", 0, 6)]
+
+        class FakePipeline:
+            def __init__(self, **kwargs):
+                self.kwargs = kwargs
+
+            def __call__(self, text):
+                return FakeDoc()
+
+        previous = sys.modules.get("stanza")
+        fake_stanza = types.ModuleType("stanza")
+        setattr(fake_stanza, "Pipeline", FakePipeline)
+        sys.modules["stanza"] = fake_stanza
+        try:
+            result = Regionaliser().analyse("Qantas mentioned smoko.", use_stanza=True)
+        finally:
+            if previous is None:
+                sys.modules.pop("stanza", None)
+            else:
+                sys.modules["stanza"] = previous
+        terms = {item["term"] for item in result.non_baseline}
+        self.assertNotIn("Qantas", terms)
+        self.assertIn("smoko", terms)
+        self.assertTrue(any("Stanza" in note for note in result.notes))
+
     def test_stdin_and_json_changes(self):
         result = self.run_cli("--region", "uk", "--json", input_text="The sidewalk is near the gas station.")
         self.assertIn('"text"', result.stdout)

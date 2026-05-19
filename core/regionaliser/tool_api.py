@@ -52,6 +52,7 @@ def regionalise_text(args: dict[str, Any], **_: Any) -> str:
             setting=str(args.get("setting", "neutral")),
             density=str(args.get("density", "light")),
             explain=bool(args.get("explain", True)),
+            use_stanza=bool(args.get("use_stanza", False)),
         )
         return _ok(result.as_dict())
     except Exception as exc:

@@ -226,7 +226,15 @@ The deterministic rewrite path is deliberately conservative around context-sensi
 - `check` stays `check` for verify/test senses such as `check defences`, but can become `cheque` in banking-instrument contexts such as `bank cheque`.
 - `license` can become noun `licence` in headings/labels and noun compounds, while likely verb contexts stay `license`.
 
-Stanza is optional and currently exposed for named-entity extraction (`--ner`). It is best used as a second-pass protection layer for names, organisations, places, and brands before treating non-baseline terms as regional vocabulary. Keep the default rewrite path deterministic and conservative; if POS/dependency parsing is added later, it should only increase confidence for noun/verb split rules and never force uncertain rewrites.
+Stanza is optional and currently exposed for named-entity extraction (`--ner`) and as a preference-controlled full-localiser protection layer:
+
+```bash
+python3 core/scripts/regionalise.py --region au --stanza --json "License Group liked the color."
+python3 core/scripts/regionalise.py --analyse --stanza --json "Qantas mentioned smoko."
+export REGIONALISER_USE_STANZA=1   # default on for this shell/profile
+```
+
+Use `--no-stanza` to turn the preference off for a command. When Stanza protection is enabled, named-entity spans are protected from rewrite/diff false positives; if Stanza/models are unavailable, the deterministic output still completes with a setup note. Keep the default path deterministic and conservative; Stanza should increase confidence/protection, not force uncertain rewrites.
 
 ## Install localiser skills
 
