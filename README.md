@@ -220,6 +220,14 @@ script. The server is dependency-free and implements `initialize`, `tools/list`,
 `tools/call`, and `ping`. Stanza NER remains optional; the NER tool returns an
 actionable install/model-download error until configured.
 
+The deterministic rewrite path is deliberately conservative around context-sensitive spellings:
+
+- `practice` stays `practice` in noun compounds such as `practice areas`, but can become `practise` in high-confidence verb contexts such as `practise law`.
+- `check` stays `check` for verify/test senses such as `check defences`, but can become `cheque` in banking-instrument contexts such as `bank cheque`.
+- `license` can become noun `licence` in headings/labels and noun compounds, while likely verb contexts stay `license`.
+
+Stanza is optional and currently exposed for named-entity extraction (`--ner`). It is best used as a second-pass protection layer for names, organisations, places, and brands before treating non-baseline terms as regional vocabulary. Keep the default rewrite path deterministic and conservative; if POS/dependency parsing is added later, it should only increase confidence for noun/verb split rules and never force uncertain rewrites.
+
 ## Install localiser skills
 
 Canonical localiser skills live under this repo's `skills/` directory:

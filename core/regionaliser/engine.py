@@ -559,6 +559,10 @@ class Regionaliser:
         pairs: list[tuple[str, str, str]] = []
         for row in self._rows(con, "spelling", opts.region):
             data = json.loads(row["data"])
+            guarded = apply_contextual_spelling_rule(text, data, changes)
+            if guarded is not None:
+                text = guarded
+                continue
             uses = split_terms(data.get("use", ""))
             avoids = split_terms(data.get("avoid", ""))
             if len(uses) == len(avoids):
@@ -782,6 +786,134 @@ def contains_term(text: str, term: str) -> bool:
         return False
     pattern = re.compile(r"(?<![\w’'-])" + re.escape(term) + r"(?![\w’'-])", re.IGNORECASE)
     return bool(pattern.search(text))
+
+
+def apply_contextual_spelling_rule(text: str, data: dict[str, object], changes: list[dict[str, str]]) -> str | None:
+    """Apply guarded spelling rules for forms that need syntax/meaning.
+
+    Some Commonwealth spellings are not simple US<->AU/UK replacements:
+    practice/practise and licence/license depend on noun vs verb, while
+    cheque/check depends on banking sense. A broad word replacement creates
+    legal false positives such as "practice areas" -> "practise areas" and
+    "check defences" -> "cheque defences". The safe default is to skip
+    uncertain cases rather than guessing.
+    """
+    use_raw = clean_term(str(data.get("use", ""))).lower()
+    avoid_raw = clean_term(str(data.get("avoid", ""))).lower()
+    notes = clean_term(str(data.get("notes", ""))).lower()
+
+    if "practise verb/practice noun" in use_raw and "practice" in avoid_raw:
+        return replace_contextual_word(
+            text,
+            "practice",
+            "practise",
+            "spelling_contextual",
+            changes,
+            allow_next=VERB_PRACTICE_NEXT,
+            block_next=NOUN_PRACTICE_NEXT,
+            note="AU/UK noun/verb split: changed only high-confidence verb use; noun uses such as practice areas stay practice.",
+        )
+
+    if "licence noun/license verb" in use_raw and "license" in avoid_raw:
+        return replace_contextual_word(
+            text,
+            "license",
+            "licence",
+            "spelling_contextual",
+            changes,
+            allow_next=NOUN_LICENSE_NEXT,
+            block_next=VERB_LICENSE_NEXT,
+            allow_boundary=True,
+            note="AU/UK noun/verb split: changed only high-confidence noun use; verb uses stay license.",
+        )
+
+    if ("cheque" in use_raw and "check" in avoid_raw) and ("bank" in notes or "bank" in use_raw or "bank" in avoid_raw):
+        return replace_contextual_word(
+            text,
+            "check",
+            "cheque",
+            "spelling_contextual",
+            changes,
+            allow_prev=BANK_CHEQUE_PREV,
+            allow_next=BANK_CHEQUE_NEXT,
+            block_next=VERIFY_CHECK_NEXT,
+            note="AU/UK/CA cheque/check split: changed only banking-instrument contexts; verify/check uses stay check.",
+        )
+
+    return None
+
+
+NOUN_PRACTICE_NEXT = {
+    "area", "areas", "group", "groups", "manager", "management", "note", "notes",
+    "direction", "directions", "owner", "owners", "leader", "leaders", "team", "teams",
+    "guide", "guides", "manual", "manuals", "standard", "standards", "certificate",
+    "certificates", "exam", "exams", "policy", "policies", "website", "websites",
+}
+VERB_PRACTICE_NEXT = {"law", "medicine", "midwifery", "nursing", "dentistry", "psychology", "as", "in"}
+NOUN_LICENSE_NEXT = {
+    "agreement", "agreements", "fee", "fees", "holder", "holders", "number", "numbers",
+    "plate", "plates", "renewal", "renewals", "terms", "key", "keys", "file", "files",
+}
+VERB_LICENSE_NEXT = {"to", "for", "under", "as"}
+BANK_CHEQUE_PREV = {"bank", "blank", "cashier", "cashier's", "personal", "certified", "pay", "paid", "paper"}
+BANK_CHEQUE_NEXT = {"book", "books", "account", "accounts", "deposit", "deposits", "payment", "payments"}
+VERIFY_CHECK_NEXT = {
+    "defence", "defences", "defense", "defenses", "whether", "if", "that", "this", "it", "the",
+    "a", "an", "for", "with", "against", "status", "statuses", "box", "boxes", "list", "lists",
+}
+
+
+def replace_contextual_word(
+    text: str,
+    source: str,
+    target: str,
+    kind: str,
+    changes: list[dict[str, str]],
+    *,
+    allow_prev: set[str] | None = None,
+    allow_next: set[str] | None = None,
+    block_next: set[str] | None = None,
+    allow_boundary: bool = False,
+    note: str = "",
+) -> str:
+    token_re = re.compile(r"(?<![\w’'-])" + re.escape(source) + r"(?![\w’'-])", re.IGNORECASE)
+
+    def word_before(pos: int) -> str:
+        before = text[:pos]
+        words = re.findall(r"[A-Za-z][A-Za-z'’.-]*", before)
+        return words[-1].lower().strip(".,”“\"'") if words else ""
+
+    def word_after(pos: int) -> str:
+        after = text[pos:]
+        match = re.search(r"[A-Za-z][A-Za-z'’.-]*", after)
+        return match.group(0).lower().strip(".,”“\"'") if match else ""
+
+    def repl(match: re.Match[str]) -> str:
+        prev_word = word_before(match.start())
+        next_word = word_after(match.end())
+        if block_next and next_word in block_next:
+            return match.group(0)
+        prev_ok = bool(allow_prev and prev_word in allow_prev)
+        next_ok = bool(allow_next and next_word in allow_next)
+        boundary_ok = allow_boundary and at_clause_or_line_boundary(text[match.end():])
+        if not (prev_ok or next_ok or boundary_ok):
+            return match.group(0)
+        replacement = preserve_case(match.group(0), target)
+        change = {"kind": kind, "from": match.group(0), "to": replacement}
+        if note:
+            change["note"] = note
+        changes.append(change)
+        return replacement
+
+    return token_re.sub(repl, text)
+
+
+def at_clause_or_line_boundary(after: str) -> bool:
+    """True when the matched word is acting as a standalone heading/label."""
+    if not after:
+        return True
+    # Treat punctuation or a line break before the next word as a noun-heading boundary.
+    return bool(re.match(r"^[\s\.:;!?)\]}>#-]*(?:\n|$)", after))
 
 
 def confidence_from_scores(top: float, second: float) -> float:

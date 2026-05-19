@@ -36,6 +36,27 @@ class RegionaliserCliTests(unittest.TestCase):
         self.assertIn("servo", result.stdout)
         self.assertIn("colour", result.stdout)
 
+    def test_au_contextual_spelling_avoids_legal_false_positives(self):
+        result = self.run_cli(
+            "--region", "au", "--density", "none", "--json",
+            "## License\n\nOur practice areas include criminal law. Check defences before filing.",
+        )
+        payload = json.loads(result.stdout)
+        self.assertIn("## Licence", payload["text"])
+        self.assertIn("practice areas", payload["text"])
+        self.assertIn("Check defences", payload["text"])
+        self.assertNotIn("practise areas", payload["text"])
+        self.assertNotIn("Cheque defences", payload["text"])
+
+    def test_au_contextual_spelling_changes_only_high_confidence_senses(self):
+        result = self.run_cli(
+            "--region", "au", "--density", "none", "--json",
+            "She plans to practice law and paid by bank check.",
+        )
+        payload = json.loads(result.stdout)
+        self.assertIn("practise law", payload["text"])
+        self.assertIn("bank cheque", payload["text"])
+
     def test_stdin_and_json_changes(self):
         result = self.run_cli("--region", "uk", "--json", input_text="The sidewalk is near the gas station.")
         self.assertIn('"text"', result.stdout)
