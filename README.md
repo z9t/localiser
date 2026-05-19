@@ -212,7 +212,7 @@ Hermes MCP config example:
 mcp_servers:
   localiser:
     command: "python3"
-    args: ["/Users/max/Code/regionaliser/core/scripts/regionaliser_mcp.py"]
+    args: ["/Users/max/Code/localiser/core/scripts/regionaliser_mcp.py"]
 ```
 
 Claude/Codex-style clients should point their stdio MCP command to the same

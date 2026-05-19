@@ -19,7 +19,7 @@ Localiser is the full Regionaliser skill. Use it when an agent needs nuanced Eng
 Canonical source of truth:
 
 ```text
-/Users/max/Code/regionaliser
+/Users/max/Code/localiser
 ```
 
 If this skill was installed from GitHub, clone/update the repo and use the same commands from the checkout root.
@@ -64,7 +64,7 @@ Use `localiser-light` instead when:
 From the repo root:
 
 ```bash
-cd /Users/max/Code/regionaliser
+cd /Users/max/Code/localiser
 python3 core/scripts/install_baseline.py
 python3 core/scripts/build_db.py --regions au,us,uk,ca
 python3 core/scripts/validate.py
@@ -221,7 +221,7 @@ Plugin tools:
 Run directly:
 
 ```bash
-python3 /Users/max/Code/regionaliser/core/scripts/regionaliser_mcp.py
+python3 /Users/max/Code/localiser/core/scripts/regionaliser_mcp.py
 ```
 
 Hermes MCP config:
@@ -230,7 +230,7 @@ Hermes MCP config:
 mcp_servers:
   localiser:
     command: "python3"
-    args: ["/Users/max/Code/regionaliser/core/scripts/regionaliser_mcp.py"]
+    args: ["/Users/max/Code/localiser/core/scripts/regionaliser_mcp.py"]
 ```
 
 Claude/Codex-style MCP client config shape:
@@ -240,7 +240,7 @@ Claude/Codex-style MCP client config shape:
   "mcpServers": {
     "localiser": {
       "command": "python3",
-      "args": ["/Users/max/Code/regionaliser/core/scripts/regionaliser_mcp.py"]
+      "args": ["/Users/max/Code/localiser/core/scripts/regionaliser_mcp.py"]
     }
   }
 }
@@ -324,7 +324,7 @@ python3 core/scripts/regionalise.py --region au --json "The sidewalk color was w
 
 ## Pitfalls
 
-- Do not copy generated regional skills into legal/project folders. Keep the canonical source in `/Users/max/Code/regionaliser` and install from there.
+- Do not copy generated regional skills into legal/project folders. Keep the canonical source in `/Users/max/Code/localiser` and install from there.
 - Do not make `--detect` overconfident. Mention confidence and evidence.
 - Do not treat named entities as regional slang.
 - Do not silently use optional Stanza NER unless it is installed and models are downloaded.

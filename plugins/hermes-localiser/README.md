@@ -10,7 +10,7 @@ hermes plugins enable localiser
 # restart Hermes or /reset a session
 ```
 
-If copied outside the repo, set `REGIONALISER_ROOT=/Users/max/Code/regionaliser` in the plugin environment.
+If copied outside the repo, set `REGIONALISER_ROOT=/Users/max/Code/localiser` in the plugin environment.
 
 Tools:
 
