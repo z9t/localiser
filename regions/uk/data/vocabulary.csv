@@ -1,0 +1,23 @@
+local,AU,US,notes
+pavement,footpath,sidewalk,pedestrian path
+petrol station,servo,gas station,fuel stop
+boot,boot,trunk,car storage
+bonnet,bonnet,hood,car
+off-licence,bottle-o,liquor store,alcohol shop
+chemist,chemist,drugstore,pharmacy
+crisps,chips,chips,packet snack
+chips,chips/fries,fries,hot chips
+flat,unit/flat,apartment,housing
+postcode,postcode,zip code,postal code
+queue,queue,line,everyday waiting; still local despite being understood abroad
+bin,bin,trash can/garbage can,household/public waste container
+takeaway,takeaway,takeout,food collected or delivered
+car park,car park,parking lot/garage,parking area; multi-storey car park for garages
+trainers,runners/trainers,sneakers,casual sports shoes
+till,till,cash register/checkout,shop checkout point
+GP,GP,primary care doctor/family doctor,general practitioner; everyday NHS wording
+council tax,rates/council rates,property/local tax,local authority bill; avoid legal detail
+Uni,uni,college,university in casual speech
+brolly,brolly,umbrella,informal; not universal but recognisable
+tea,tea,dinner/supper,can mean evening meal in many northern/working-class contexts
+the high street,main street/CBD,main street/downtown,local shopping street/retail core

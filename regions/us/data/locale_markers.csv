@@ -1,0 +1,52 @@
+marker,scope,locales,weight,meaning,notes,caution
+OMNY,transport,NYC;New York,5,contactless fare system for NYC subway and buses,Strong NYC transit marker when used naturally,Visitors and commuters from outside NYC also use it
+PATH train,transport,NYC;New Jersey;Hudson County;Newark,5,Port Authority Trans-Hudson rail between NYC and New Jersey,NYC/North Jersey commuting context,Can appear in travel advice
+LIRR,transport,Long Island;NYC;New York,5,Long Island Rail Road,Strong Long Island/NYC regional commuting marker,Known by visitors and airport travellers
+the T,transport,Boston;Massachusetts,5,MBTA rapid transit and wider transit system,Very strong Boston-area lived transit term,Students and tourists also use it
+CharlieCard,transport,Boston;Massachusetts,5,MBTA fare card,Specific Boston-area transit marker,Can occur in visitor logistics
+RMV,admin,Massachusetts,5,Registry of Motor Vehicles,Distinct Massachusetts admin term rather than DMV,Could be referenced by non-residents handling MA paperwork
+packie,retail,Massachusetts;New England,3,colloquial package/liquor store term,Useful local vernacular marker in parts of New England,Informal; not universal New England usage
+SEPTA,transport,Philadelphia;Southeastern Pennsylvania,5,Philadelphia-area public transit agency,Strong Philly-region transport marker,Known by regional commuters and visitors
+hoagie,food,Philadelphia;Pennsylvania;New Jersey;Delaware,4,regional term for a submarine sandwich,Good Mid-Atlantic food vocabulary signal,Occurs beyond Philly and in chain branding
+down the shore,lived,New Jersey;Philadelphia;Mid-Atlantic,4,going to the New Jersey shore,Strong NJ/Philly seasonal phrase,Can be learned by transplants and frequent visitors
+jughandle,transport,New Jersey,5,road design using a ramp for left turns or U-turns,Strong New Jersey driving infrastructure marker,Exists in a few other places but less salient
+Wawa,retail,Philadelphia;New Jersey;Delaware;Mid-Atlantic,3,convenience-store chain with strong Mid-Atlantic identity,Useful retail/lifestyle marker in context,Expansion weakens geographic specificity
+SmarTrip,transport,Washington DC;Maryland;Northern Virginia,4,WMATA fare/payment card,DC-area transit marker,Visitors also buy and use it
+MARC,transport,Maryland;Washington DC;Baltimore,4,Maryland commuter rail,Good DC/Baltimore commuting marker,May appear in travel planning
+VRE,transport,Northern Virginia;Washington DC,4,Virginia Railway Express commuter rail,Strong Northern Virginia/DC commute signal,Mostly transport-context evidence
+parish,admin,Louisiana,5,Louisiana county-equivalent administrative unit,Strong Louisiana civic/admin marker,Religious meaning elsewhere needs context
+neutral ground,lived,New Orleans;Louisiana,4,median strip in New Orleans usage,Distinct local street/civic term,Phrase has other meanings
+krewe,lived,New Orleans;Louisiana;Gulf Coast,4,Mardi Gras social/parade organisation,Strong New Orleans/Carnival marker,Seasonal/event context may include tourists
+SunPass,transport,Florida,5,Florida electronic toll collection system,Strong Florida driving marker,Visitors and rental cars may also encounter it
+Publix sub,food,Florida;Georgia;Southeast,3,sub sandwich from Publix grocery deli,Common Southeast/Florida lived food reference,Publix footprint spans multiple states
+CTA,transport,Chicago;Illinois,5,Chicago Transit Authority,Strong Chicago transit marker,Known to visitors
+Ventra,transport,Chicago;Illinois,5,CTA/Pace/Metra fare payment system,Specific Chicago-area transit evidence,Can occur in visitor logistics
+Metra,transport,Chicago;Illinois;Northwest Indiana,5,Chicago-area commuter rail,Strong regional commuting marker,May be known by occasional visitors
+Jewel,retail,Chicago;Illinois,4,shorthand for Jewel-Osco grocery stores,Chicago-area lived retail marker,Chain presence extends beyond Chicago
+Secretary of State office,admin,Michigan;Illinois,4,state agency handling driver/vehicle services in MI and IL,Useful alternative to DMV in these states,Ambiguous between MI and IL without more clues
+party store,retail,Michigan,4,Michigan term often used for convenience/liquor store,Good lived vocabulary marker,Meaning varies elsewhere
+bubbler,lived,Wisconsin;Milwaukee;Rhode Island,4,regional term for drinking fountain,Strong lexical marker in WI/RI contexts,Two separated regions use it; not enough alone
+Kwik Trip,retail,Wisconsin;Minnesota;Iowa;Upper Midwest,4,Upper Midwest convenience-store chain,Good lived retail marker,Brand expansion may broaden signal
+TxTag,transport,Texas,5,Texas electronic toll collection system,Strong Texas driving marker,Travellers may also mention it
+H-E-B,retail,Texas;San Antonio;Austin;Houston,5,Texas grocery chain,Strong Texas lived retail marker,Some cross-border/visitor mentions possible
+breakfast taco,food,Texas;Austin;San Antonio;South Texas,4,common morning taco category,Strong Texas food routine marker in context,Now widespread in cities outside Texas
+kolache,food,Texas;Central Texas,3,Texas usage for Czech pastries and related sausage pastries,Useful Central Texas food marker,Terminology varies; sausage versions may be klobasnek
+MARTA,transport,Atlanta;Georgia,5,Atlanta rapid transit/bus agency,Strong Atlanta transit marker,Airport visitors may know it
+green chile,food,New Mexico;Colorado;Mountain West,5,regional chile ingredient/sauce,Strong NM/CO food marker when used routinely,National restaurants also use it
+Christmas style,food,New Mexico,5,ordering both red and green chile,Very strong New Mexico restaurant-ordering marker,Can be learned by tourists
+MVD,admin,Arizona;New Mexico,5,Motor Vehicle Division for driver/vehicle services,Distinct from generic DMV in AZ/NM,Ambiguous between Arizona and New Mexico
+fry sauce,food,Utah;Idaho;Mountain West,4,ketchup-mayo style dipping sauce,Good Utah/Idaho food marker,Known elsewhere and sold nationally
+the Front Range,lived,Colorado;Denver;Mountain West,4,urban corridor along eastern Rockies,Strong Colorado regional geography term,Also used in planning/news
+BART,transport,San Francisco Bay Area;California,5,Bay Area Rapid Transit,Strong Bay Area transit marker,Known by visitors
+Muni,transport,San Francisco;San Francisco Bay Area;California,5,San Francisco Municipal Railway,Strong San Francisco marker,Tourist transit contexts also use it
+Clipper card,transport,San Francisco Bay Area;California,5,Bay Area transit fare card,Strong Bay Area transit marker,Visitors may buy one
+the 5,transport,Southern California;California,4,freeway reference with definite article,Useful Southern California road-speech marker,Transplants may use it; weak alone
+SigAlert,transport,Southern California;California,4,traffic incident alert term in California,Strong California traffic-context marker,May appear in traffic reports
+ORCA card,transport,Seattle;Puget Sound;Washington;PNW,5,Puget Sound transit fare card,Strong Seattle-region transit marker,Visitors may use it
+TriMet,transport,Portland;Oregon;PNW,5,Portland-area transit agency,Strong Portland transit marker,Known to visitors
+Fred Meyer,retail,Oregon;Washington;Idaho;Alaska;PNW,3,Northwest grocery/general-merchandise chain,Useful PNW/Alaska retail signal,Footprint spans several states
+plate lunch,food,Hawaii,5,Hawaii local meal format,Strong Hawaii food marker,Mainland Hawaiian restaurants use it too
+shave ice,food,Hawaii,5,Hawaii-style shaved ice dessert term,Strong Hawaii marker,Mainland shops also use it
+TheBus,transport,Oahu;Honolulu;Hawaii,5,Honolulu/Oahu public bus system,Strong Oahu transit marker,Visitors may use it
+snowmachine,lived,Alaska,5,Alaska term for snowmobile,Strong Alaska lived/outdoor marker,Also used in parts of northern Canada/New England
+Permanent Fund Dividend,admin,Alaska,5,annual Alaska resident dividend program,Very strong Alaska administrative marker,May appear in news/policy discussions

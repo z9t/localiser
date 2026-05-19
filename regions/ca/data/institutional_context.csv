@@ -1,0 +1,11 @@
+locale,domain,institution_or_term,meaning,typical_context,strength,caution,sources
+Ontario/Toronto,government/services,ServiceOntario / OHIP,Ontario service portal and health insurance,"renew health card, OHIP coverage, licence plate sticker",high,Ontario-wide; combine with GTA markers for Toronto.,ontario.ca; serviceontario.ca
+Ontario/Toronto,retail/alcohol,LCBO / Beer Store,Ontario alcohol retail institutions,"LCBO hours, Beer Store run",high,Very Ontario-specific but widely joked about; not identity proof.,lcbo.com; thebeerstore.ca
+Montreal/Quebec,education/services,RAMQ / CEGEP,Quebec health insurance and college system,"RAMQ card, CEGEP schedule, SRAM application",high,Quebec system clue; do not infer language/ethnicity.,ramq.gouv.qc.ca; cegepsquebec.ca
+Montreal/Quebec,government/retail,SAQ / Hydro-Quebec,Quebec alcohol retailer and utility,"SAQ run, Hydro bill, outage map",high,Strong Quebec daily-life clue.,saq.com; hydroquebec.com
+Nova Scotia/Halifax,government/services,Access Nova Scotia / MSI,NS service centres and health insurance,"MSI card, licence renewal, Access NS appointment",high,"Province-wide, not Halifax-only.",novascotia.ca
+Newfoundland and Labrador,government/utilities,MCP / Newfoundland Power,NL health insurance and utility,"MCP card, power outage, ferry booking",high,Province-wide; verify local context.,gov.nl.ca; newfoundlandpower.com
+Winnipeg/Manitoba,government/insurance,MPI / Manitoba Hydro,public auto insurer and utility,"MPI claim, Hydro bill, Autopac renewal",high,Strong Manitoba system clue.,mpi.mb.ca; hydro.mb.ca
+Saskatchewan/Regina,government/insurance,SGI / SaskPower,public insurer and utility,"SGI claim, SaskPower outage, plates",high,Province-wide not Regina-only.,sgi.sk.ca; saskpower.com
+Calgary/Alberta,health/registry,AHS / registry agent,Alberta health system and private registry offices,"AHS appointment, registry renewal, health card",medium,Alberta-wide; not Calgary-specific.,albertahealthservices.ca; alberta.ca
+Vancouver/BC,insurance/services,ICBC / MSP / BC Hydro,"BC auto insurance, health plan, utility","ICBC claim, MSP account, Hydro outage",high,BC-wide; combine with TransLink/BC Ferries for locality.,icbc.com; gov.bc.ca; bchydro.com

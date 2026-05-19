@@ -1,0 +1,7 @@
+{
+  "display_name": "UK English Simulation Pack",
+  "description": "UK English regional simulation pack — spelling, vocabulary, register, generation, regional nuance, sociolects, humour, and cultural references.",
+  "overview": "Use this pack to make an agent write and speak in convincing United Kingdom English across casual, social-business, and formal settings.",
+  "region_code": "uk",
+  "skill_name": "uk-english"
+}

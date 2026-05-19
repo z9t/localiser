@@ -1,0 +1,59 @@
+term,category,register,region_or_group,meaning,usage_notes,avoid_when
+y’all,pronoun,casual,South/Texas/AAVE broader,you plural,Natural in many regions/groups,forcing outside context
+you guys,pronoun,casual/common,widespread,you plural,Common but gendered to some ears,formal/inclusive copy
+you all,pronoun,neutral,national,you plural,Safer formal plural,casual regional voice
+hella,intensifier,casual,Northern California/youth,very/a lot,Region-coded,national default
+wicked,intensifier,casual,New England,very,Wicked cold,outside region unless character
+ope,discourse marker,casual,Midwest,minor surprise/apology,Online-recognised regional marker,overuse
+pop,drink,regional,Midwest/Great Lakes/parts West,soda/soft drink,Dialect marker,national default
+soda,drink,regional/common,Northeast/West/general,soft drink,Common default,where pop/coke local matters
+coke,drink,regional,South,generic soda in some areas,Ask what kind of Coke?,formal clarity
+freeway,road,regional,California/West,controlled-access highway,Natural in CA,East Coast default
+highway,road,common,national,major road,Broad term,none
+interstate,road,common,national,Interstate highway,Specific road system,outside US
+sub,food,regional/common,Northeast/general,long sandwich,Common,some regions say hoagie/grinder
+hoagie,food,regional,Philadelphia area,sub sandwich,Strong Philly marker,national default
+grinder,food,regional,New England,sub sandwich,Regional,national default
+po’boy,food,regional,Louisiana,Louisiana sandwich,Cultural/regional,generic sandwich
+barbecue,food/culture,regional,South/Texas/KC/Carolinas,slow-smoked meat tradition,Means different styles,using as generic grilling
+cookout,event,regional/common,South/East,informal outdoor meal,Common summer/social term,formal
+tailgate,event,common,sports/college,pre-game parking-lot gathering,Sports culture,non-sport contexts
+homecoming,school,common,US schools/college,school alumni/game/dance tradition,Cultural institution,outside US without context
+prom,school,common,US high school,formal school dance,Strong teen-cultural term,none
+freshman,school,common,US education,first-year student,Gender-neutral issues in some contexts,non-US systems
+sophomore,school,common,US education,second-year student,US-specific,non-US systems
+junior,school,common,US education,third-year student,US-specific,non-US systems
+senior,school,common,US education,fourth-year/final-year student,US-specific,non-US systems
+downtown,place,common,national,central business district,More US/Canada than UK/AU,where city uses CBD
+the suburbs,place,common,national,residential areas outside city core,Class/culture varies widely,treating as one thing
+the sticks,place,casual,national,remote/rural area,Can be dismissive,respectful description
+boonies,place,casual,national,remote/rural area,Dismissive/comic,formal
+folks,people,warm/common,national,people/family/community,Friendly institutional tone too,overuse
+buddy,address,casual,national,friend/man/child address,Can be warm or condescending,formal
+dude,address,casual,national/youth,person/friend,"Casual, gender-flexible in some groups",formal
+awesome,evaluation,casual/common,national,great,US positivity marker,formal if overused
+for sure,agreement,casual/common,national,definitely/yes,Natural in speech,formal
+no problem,pragmatic phrase,casual/common,national,you’re welcome/it’s fine,Common response,very formal
+gotcha,acknowledgement,casual,national,I understand,Friendly quick ack,formal
+heads up,notice,casual/common,national,advance warning,Common workplace casual,formal official
+touch base,business idiom,business casual,national office,check in/contact,Common but clichéd,plain writing
+circle back,business idiom,business casual,national office,return to topic,Common but mocked,stacking buzzwords
+reach out,business idiom,business/common,national,contact,Very common,overuse
+ballpark,estimate,casual/business,national,rough estimate,Sports metaphor,formal precision
+rain check,social phrase,casual,national,postpone invitation,Common idiom,formal
+takeout,food,common,national,takeaway food,Standard US,AU/UK copy
+to-go,food,common,national,for takeaway,Coffee/food order,formal
+restroom,facility,polite/common,national,public toilet,Polite public term,home context
+bathroom,facility,common,national,toilet room,Common even without bath,formal public signage sometimes restroom
+trash,waste,common,national,rubbish,Everyday,some regions garbage
+garbage,waste,common,national,rubbish,Everyday,none
+dumpster,object,common,national,large rubbish skip,US trademark generic,outside US
+sneakers,clothing,regional/common,Northeast/general,athletic shoes,Common,UK trainers/AU runners
+tennis shoes,clothing,regional,Midwest/South,athletic shoes,Regional,national default
+flip-flops,clothing,common,national,thongs/jandals,Footwear,AU thong ambiguity
+sweatpants,clothing,common,national,track pants/trackies,Casual pants,UK tracksuit bottoms
+parking lot,place,common,national,car park,Standard US,AU/UK copy
+stroller,object,common,national,pram/pushchair,Baby transport,AU/UK copy
+diaper,object,common,national,nappy,Baby item,AU/UK copy
+laundromat,place,common,national,self-service laundry,US term,AU laundrette?
+drugstore,place,common,national,pharmacy/chemist,Also sells general goods,formal medical context pharmacy

@@ -1,0 +1,46 @@
+marker,scope,locales,weight,meaning,notes,caution
+GO train,transport,Ontario;GTA;Toronto;Hamilton,5,regional commuter rail/bus network around GTHA,Strong daily commuting/station marker,Can appear in travel writing or Ontario news
+Presto card,transport,Ontario;GTA;Ottawa,4,reloadable fare card used on several Ontario transit systems,Useful Toronto/Ottawa-area transit context,Also used by visitors
+TTC,transport,Toronto;Ontario,5,Toronto Transit Commission,High-signal Toronto transit acronym,May appear in national news/tourism
+MiWay,transport,Mississauga;GTA;Ontario,4,Mississauga municipal transit system,Good suburban GTA marker,Narrow municipal signal
+the 401,transport,Ontario;GTA;Southwestern Ontario,4,Highway 401,Common lived reference for Ontario traffic/travel,Known nationally; context matters
+LCBO,institution,Ontario,5,Liquor Control Board of Ontario retail stores,Strong Ontario alcohol-retail/admin marker,Mentioned in interprovincial comparisons
+Beer Store,institution,Ontario,4,Ontario beer retail chain/system,Distinct Ontario retail term,Generic-sounding phrase; context important
+hydro bill,admin,Ontario;Manitoba;BC;Quebec;Canada,3,electricity bill often called hydro,Canadian signal in several provinces,Too broad alone
+depanneur,food_retail,Quebec;Montreal anglophone,5,convenience store often shortened to dep,Strong Montreal/Quebec English marker,French term too; not only anglophone
+SAQ,institution,Quebec;Montreal,5,Societe des alcools du Quebec liquor retailer,Strong Quebec alcohol-retail marker,Tourism/food writing may mention it
+STM,transport,Montreal;Quebec,5,Societe de transport de Montreal,Strong Montreal transit acronym,Visitor context possible
+OPUS card,transport,Montreal;Quebec,5,transit smart card in Greater Montreal/Quebec,High-signal daily transit marker,Also used by students/visitors
+CEGEP,education,Quebec;Montreal anglophone,5,Quebec post-secondary college level,Very strong Quebec education-system marker,Can appear in policy/biography contexts
+Bill 101,admin,Quebec;Montreal anglophone,4,Quebec Charter of the French Language,Strong Quebec civic/political reference,News/politics context may be external
+West Island,place_term,Montreal;Quebec anglophone,5,western Montreal Island area often in anglophone context,Strong Montreal local geography marker,Do not infer language/identity from geography alone
+the Main,place_term,Montreal;Quebec,4,Saint-Laurent Boulevard in Montreal,Local Montreal shorthand,Arts/tourism contexts possible
+RNC,institution,Newfoundland and Labrador;St. Johns,4,Royal Newfoundland Constabulary,Strong NL policing/institution marker,Acronym has other meanings
+Jiggs dinner,food,Newfoundland and Labrador,4,traditional boiled dinner associated with Newfoundland,Good NL cultural/food marker,Can be cited by outsiders
+touton,food,Newfoundland and Labrador,5,fried bread dough associated with Newfoundland foodways,Strong NL food marker,Food references can be nostalgic/touristic/family-based
+salt beef bucket,food_retail,Newfoundland and Labrador,4,packaged salt beef used in NL cooking,Distinct grocery/food marker,May appear in recipe contexts
+the Armdale Rotary,transport,Halifax;Nova Scotia,5,major Halifax traffic circle/interchange,Strong lived Halifax traffic marker,Could occur in directions/news
+Metro Transit,transport,Halifax;Nova Scotia,3,older/common name for Halifax Transit,"Useful Halifax marker, especially colloquial/older habit",Official branding changed
+NSLC,institution,Nova Scotia,5,Nova Scotia Liquor Corporation stores,Strong Nova Scotia alcohol-retail marker,Interprovincial comparison possible
+donair sauce,food,Halifax;Nova Scotia;Atlantic Canada,4,sweet garlic sauce associated with Halifax-style donairs,Good Halifax/Atlantic food marker,Donairs are now widespread
+storm chips,food,Atlantic Canada;Nova Scotia;New Brunswick;PEI;NL,3,snacks bought ahead of winter storms,Regional media/lived-weather marker,Broader internet joke now; use cautiously
+ANBL,institution,New Brunswick,5,Alcohol retailer in New Brunswick,Strong NB retail/admin marker,Acronym opaque; context needed
+the Perimeter,transport,Winnipeg;Manitoba,5,Winnipeg ring road,Strong Winnipeg driving marker,Visitors navigating Winnipeg may use it
+MPI,institution,Manitoba,5,Manitoba Public Insurance,Strong Manitoba insurance/admin marker,Acronym has other meanings
+Manitoba Hydro,institution,Manitoba,4,provincial electricity/natural gas utility,Good Manitoba admin marker,News/billing comparisons possible
+SGI,institution,Saskatchewan,5,Saskatchewan Government Insurance,Strong Saskatchewan vehicle insurance/admin marker,Acronym has unrelated meanings
+Rider game,sports_institution,Saskatchewan;Regina,3,Saskatchewan Roughriders football game,Useful Saskatchewan cultural marker,Sports fandom is not residence
+parkade,transport,Prairies;Alberta;BC;Western Canada,3,multi-storey parking garage,Western Canadian lexical signal,Also understood elsewhere; weak alone
+Plus 15,transport,Calgary;Alberta,5,Calgary downtown enclosed pedestrian skywalk network,Strong Calgary marker,Architecture/tourism contexts possible
+CTrain,transport,Calgary;Alberta,5,Calgary light rail system,Strong Calgary transit marker,Visitors may use it
+ETS,transport,Edmonton;Alberta,4,Edmonton Transit Service,Good Edmonton marker,Acronym ambiguous without transit context
+ICBC,institution,British Columbia,5,Insurance Corporation of British Columbia,Strong BC auto-insurance/admin marker,National comparisons possible
+TransLink,transport,Vancouver;Metro Vancouver;BC,5,Metro Vancouver transit authority,Strong Vancouver-area transit marker,Name used elsewhere globally
+Compass Card,transport,Vancouver;Metro Vancouver;BC,4,Metro Vancouver transit fare card,Good Vancouver transit marker,Generic-sounding; capitalization/context matters
+SeaBus,transport,Vancouver;North Vancouver;BC,5,passenger ferry linking Vancouver and North Vancouver,Strong Metro Vancouver marker,Tourists also use it
+SkyTrain,transport,Vancouver;Metro Vancouver;BC,5,Metro Vancouver rapid transit system,Strong Vancouver marker,Airport/tourism contexts possible
+BC Ferries,transport,BC;Vancouver Island;Gulf Islands;Sunshine Coast,5,provincial coastal ferry system,Strong BC coastal/Island marker,Common in travel contexts
+the Island,place_term,Vancouver Island;BC,4,shorthand for Vancouver Island in BC contexts,Good BC/Vancouver Island marker,Ambiguous elsewhere; needs BC context
+Northwestel,institution,Yukon;Northwest Territories;Nunavut;Northern Canada,5,telecommunications provider across much of Northern Canada,Strong northern services marker,Remote logistics managers may mention it
+Qulliq Energy,institution,Nunavut;Northern Canada,5,Nunavut territorial power corporation,Strong Nunavut admin marker,Policy/news context possible
+sealift,transport,Nunavut;Northern coastal communities,4,annual marine resupply shipment to remote communities,Strong northern logistics marker,Also military/shipping term; pair with community context

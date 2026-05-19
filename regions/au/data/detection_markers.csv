@@ -1,0 +1,21 @@
+marker,type,weight,notes
+Sydney,landmark,2,Major city signal but weak alone
+Melbourne,landmark,2,Major city signal but weak alone
+Brisbane,landmark,2,Major city signal but weak alone
+Perth,landmark,2,Major city signal but weak alone
+Adelaide,landmark,2,Major city signal but weak alone
+Canberra,landmark,2,Capital signal
+Hobart,landmark,2,Capital city signal
+Darwin,landmark,2,Capital city signal
+Woolies,brand/place,3,Common Australian supermarket shorthand
+Bunnings,brand/place,3,Australian hardware retail cultural signal
+Centrelink,institution,4,Australian welfare/government service
+Medicare card,institution,4,Australian healthcare/admin signal
+ATO,institution,4,Australian Taxation Office acronym
+ABC News,institution/media,2,Ambiguous acronym but Australian context if with AU terms
+SBS,institution/media,2,Australian broadcaster signal when local context fits
+Opal card,transport,4,NSW public transport card
+Myki,transport,4,Victorian public transport card
+Go card,transport,3,Queensland public transport card
+EFTPOS,admin/retail,2,Common AU/NZ payment wording; weak alone
+ANZAC Day,culture,3,Strong AU/NZ shared public holiday signal

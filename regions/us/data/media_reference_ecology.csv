@@ -1,0 +1,11 @@
+locale,category,reference,what_it_signals,typical_phrase,generation_or_register,strength,caution,sources
+NYC/New York,media/local,NY1 / Gothamist / WNYC,NYC local news/public radio ecology,"saw it on NY1, Gothamist said",neutral/local,medium,Media consumption varies heavily by age/class.,ny1.com; gothamist.com; wnyc.org
+Boston/Massachusetts,media/local,WBUR / Boston Globe,Boston public radio and newspaper layer,"heard it on WBUR, Globe column",neutral/local,medium,Not all locals are Globe/WBUR audience.,wbur.org; bostonglobe.com
+Philadelphia,media/local,WHYY / Inquirer,Philly public media/newspaper layer,"WHYY segment, Inquirer story",neutral/local,medium,Media references are audience-shaped.,whyy.org; inquirer.com
+Chicago,media/local,WBEZ / Chicago Tribune / Block Club Chicago,Chicago public/local media ecology,"Block Club reported, heard on WBEZ",neutral/local,medium,Neighbourhood-level context matters.,wbez.org; blockclubchicago.org
+Texas/Houston/Dallas,weather/emergency,ERCOT alerts / local storm coverage,Texas grid/weather public discourse,"ERCOT conservation alert, freeze prep",neutral/event,medium,Statewide media visibility; not precise location.,ercot.com
+Atlanta,media/local,WABE / Atlanta Journal-Constitution,Atlanta public radio/newspaper ecology,"WABE interview, AJC story",neutral/local,medium,Audience-shaped; weak evidence alone.,wabe.org; ajc.com
+San Francisco Bay Area,media/local,KQED / SF Chronicle,Bay Area public media/newspaper layer,"KQED piece, Chronicle story",neutral/local,medium,Bay Area is multi-city; do not flatten.,kqed.org; sfchronicle.com
+Los Angeles/Southern California,media/local,LAist / LA Times / KCRW,LA local/public-media ecology,"LAist guide, KCRW segment",neutral/local,medium,LA is sprawling; neighbourhood context matters.,laist.com; latimes.com; kcrw.com
+Seattle/PNW,media/local,KUOW / The Seattle Times,Seattle public-media/newspaper ecology,"KUOW interview, Seattle Times piece",neutral/local,medium,PNW is broader than Seattle.,kuow.org; seattletimes.com
+Hawaii,media/local,Hawaii News Now / Civil Beat,Hawaii local news/watchdog ecology,"Civil Beat story, HNN forecast",neutral/local,medium,Avoid using Hawaii references as exotic colour.,hawaiinewsnow.com; civilbeat.org

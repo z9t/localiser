@@ -1,0 +1,55 @@
+term,category,register,region_or_group,meaning,usage_notes,avoid_when
+cheers,thanks/signoff,casual/common,national,thanks/goodbye,Very common casual/work email,formal official
+ta,thanks,casual,national,thanks,Short informal thanks,formal
+mate,address,casual,national,friend/person,"Common, class/region variable",formal
+you alright?,greeting,casual,England/Wales,hello/how are you,Not necessarily concern,formal
+sorted,state,casual/common,national,arranged/fixed,That’s sorted,formal
+knackered,state,casual,national,very tired,Common informal,formal
+gutted,state,casual,national,very disappointed,Common emotional term,formal
+chuffed,state,casual,national,pleased,Warm informal,formal
+dodgy,quality,casual/common,national,suspicious/poor quality,Common,formal without explanation
+skint,money,casual,national,broke/no money,Informal,professional
+quid,money,casual/common,national,pounds sterling,Ten quid,formal finance
+fiver,money,casual,national,five-pound note,Everyday casual,formal
+tenner,money,casual,national,ten-pound note,Everyday casual,formal
+loo,facility,casual/common,national,toilet,Polite casual,formal signage
+toilet,facility,common,national,bathroom/restroom,Normal UK term,US politeness may differ
+rubbish,waste/evaluation,common,national,trash/garbage or bad,That’s rubbish,none
+bin,object,common,national,trash can,Standard UK,none
+pavement,place,common,national,sidewalk/footpath,Pedestrian path,US pavement means road surface
+flat,housing,common,national,apartment,Standard UK,US copy
+estate agent,person,common,national,real estate agent/realtor,Standard UK,US realtor
+queue,social practice,common,national,line,Also verb,US line
+takeaway,food,common,national,takeout,Standard UK,US takeout
+chippy,food/place,casual,national/regional,fish-and-chip shop,Casual,formal
+crisps,food,common,national,chips/packet chips,Packet snack,US chips
+chips,food,common,national,fries/hot chips,Hot fried potato,US chips ambiguity
+biscuit,food,common,national,cookie/cracker,Broad category,US cookie
+sweets,food,common,national,candy/lollies,Confectionery,US candy
+aubergine,food,common,national,eggplant,UK term,US/AU copy
+courgette,food,common,national,zucchini,UK term,US/AU copy
+coriander,food,common,national,cilantro,UK/AU term,US copy
+rocket,food,common,national,arugula,UK/AU term,US copy
+plaster,object,common,national,band-aid/adhesive bandage,Small wound covering,US confusion
+jumper,clothing,common,national,sweater,Standard UK,US jumper dress
+trainers,clothing,common,national,sneakers/runners,Athletic shoes,US copy
+wellies,clothing,casual,national,rubber boots,Wellington boots,formal
+hoover,object/verb,casual/common,national,vacuum cleaner/vacuum,Brand generic,formal generic
+mobile,object,common,national,cell phone,Phone,US copy
+postcode,admin,common,national,zip code,Postal code,US copy
+GP,health,common,national,family doctor/primary care doctor,General practitioner,non-UK may need expansion
+A&E,health,common,UK,emergency department/ER,Accident and Emergency,US ER
+uni,education,casual/common,national,university/college,Common shortening,formal full name
+college,education,common,UK,further education/sixth form/residential depending context,Not default university,US college assumption
+public school,education,specific,England/Wales,elite private school,False friend,AU/US public school
+state school,education,common,UK,government-funded school,Publicly funded,US state school college
+bits and bobs,phrase,casual,national,miscellaneous items,Warm informal,formal
+faff,phrase/verb,casual,national,fuss/waste time,Stop faffing,formal
+can’t be arsed,phrase,vulgar casual,national,cannot be bothered,Very informal,professional
+taking the piss,phrase,vulgar casual,national,mocking/exploiting/being unreasonable,Common but vulgar,professional
+innit,tag,casual/sociolect,London/youth/wider,isn’t it/general tag,Sociolect marker,generic UK voice
+aye,agreement,regional,Scotland/North/NI,yes,Regional,national default
+wee,adjective,regional,Scotland/NI,small,Natural regionally,generic British
+nowt,pronoun,regional,North England,nothing,Regional,national default
+bairn,person,regional,Scotland/North East,child,Regional,national default
+lush,evaluation,regional/casual,Wales/West Country/youth,great/attractive,Regional/youth,formal

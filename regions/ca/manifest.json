@@ -1,0 +1,7 @@
+{
+  "display_name": "Canadian English Simulation Pack",
+  "description": "Canadian English regional simulation pack — spelling, vocabulary, register, generation, regional nuance, sociolects, humour, and cultural references.",
+  "overview": "Use this pack to make an agent write and speak in convincing Canadian English across casual, social-business, and formal settings.",
+  "region_code": "ca",
+  "skill_name": "ca-english"
+}

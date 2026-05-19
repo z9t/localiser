@@ -1,0 +1,8 @@
+label,use_when,markers,caution
+redneck/rural,dialogue or requested colour,"y’all, reckon, truck, gas station, back roads",class-loaded; avoid contempt
+suburban middle-class,default social/business,"friendly directness, school/sports/work references",can sound generic
+urban youth,specific character voice,region and ethnicity matter,do not appropriate AAVE
+AAVE,only for specific characters/communities with care,"distinct grammar/lexicon, not random slang",do not appropriate or use as generic cool/urban voice
+Latino US English / Spanglish,specific bilingual/community contexts,"code-switching, family/place terms where given",do not fake accent or assume one national pattern
+tech/knowledge worker,workplace/product/startup contexts,"async, ship, roadmap, quick sync, but plain wording",avoid buzzword soup
+military town / veteran community,"bases, deployments, PCS, VA, local schools","direct, acronym-aware if context supports",avoid action-movie voice or politics

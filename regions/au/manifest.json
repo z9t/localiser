@@ -1,0 +1,7 @@
+{
+  "display_name": "Australian English Simulation Pack",
+  "description": "Australian English regional simulation pack — spelling, vocabulary, register, generation, regional nuance, sociolects, humour, and cultural references.",
+  "overview": "Use this pack to make an agent write and speak in convincing Australian English across casual, social-business, and formal settings.",
+  "region_code": "au",
+  "skill_name": "au-english"
+}

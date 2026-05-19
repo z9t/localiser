@@ -1,0 +1,35 @@
+marker,scope,locales,weight,meaning,notes,caution
+Opal card,transport,"NSW;Sydney",5,NSW public transport smartcard,Strong Sydney/NSW admin-life signal; user-seeded,Can be mentioned by visitors
+Opal,transport,"NSW;Sydney",4,Short form for Opal card,Strong if transport context is present; user-seeded,Ambiguous gemstone/brand without transport context
+myki,transport,"VIC;Melbourne",5,Victorian public transport smartcard,Strong Melbourne/VIC public transport signal; user-seeded,Can be mentioned by visitors
+PTV,transport,"VIC;Melbourne",4,Public Transport Victoria,Victorian transport-admin signal,Ambiguous acronym outside transport context
+V/Line,transport,"VIC;regional VIC;Melbourne",4,Victorian regional rail operator,Victorian public transport signal,Can appear in travel writing
+go card,transport,"QLD;Brisbane",5,Queensland public transport smartcard,Strong Brisbane/SEQ transport signal,Can be mentioned by visitors
+Translink,transport,"QLD;Brisbane",3,Queensland public transport network brand,Queensland transport signal,Also used elsewhere internationally
+MetroCARD,transport,"SA;Adelaide",4,Adelaide public transport card,Adelaide/SA transport signal,Capitalisation varies
+Adelaide Metro,transport,"SA;Adelaide",4,Adelaide public transport system,Adelaide/SA transport signal,Can be travel context
+SmartRider,transport,"WA;Perth",5,Perth public transport smartcard,Strong Perth/WA transport signal,Can be mentioned by visitors
+Transperth,transport,"WA;Perth",4,Perth public transport network,Perth/WA transport signal,Can be travel context
+Greencard,transport,"TAS;Hobart;Launceston",4,Tasmanian public transport smartcard,Tasmanian transport signal,Ambiguous generic term without transport context
+ACTION,transport,"ACT;Canberra",3,Canberra bus network,ACT/Canberra transport signal,Ambiguous ordinary word/acronym
+parma,food,"VIC;Melbourne;SA;TAS;WA",4,chicken parmigiana pub-food shortening,VIC/Melbourne-coded and also common in several southern/western states; user-seeded,Not a proof by itself
+parmi,food,"NSW;QLD;Sydney;Brisbane",4,chicken parmigiana pub-food shortening,NSW/QLD-coded contrast with parma; user-seeded,Not a proof by itself
+potato cake,food,"VIC;Melbourne;TAS",4,battered fried potato slice,VIC/TAS wording; user-seeded,Food context needed
+potato scallop,food,"NSW;QLD;Sydney;Brisbane",4,battered fried potato slice,NSW/QLD wording; user-seeded,Food context needed
+scallop,food,"NSW;QLD",2,Short local form for potato scallop,Weak without fish-and-chip-shop context,Ambiguous seafood term
+bathers,clothing,"VIC;SA;WA;TAS;Melbourne;Adelaide;Perth;Hobart",3,swimwear,Regional swimwear term across several southern/western states,Shared across multiple states
+swimmers,clothing,"NSW;QLD;Sydney;Brisbane",3,swimwear,Regional swimwear term in NSW/QLD,Shared across two states
+togs,clothing,"QLD;Brisbane;regional QLD",3,swimwear,Queensland/NZ-overlap swimwear term,May be generational/regional
+fritz,food,"SA;Adelaide",5,processed sandwich meat,Strong SA/Adelaide food-word signal,Can be surname/name
+Deli,retail,"SA;Adelaide",2,corner shop/milk bar style term,SA retail wording signal,Weak/generic elsewhere
+milk bar,retail,"VIC;Melbourne;TAS",3,corner shop/convenience store,VIC/TAS everyday place term,Older/generational
+newsagency,retail,"NSW;QLD;VIC;SA;WA;TAS;ACT",1,newsagent/newsagency,Australian-wide weak admin-retail signal,Not subregional
+Service NSW,institution,"NSW;Sydney;regional NSW",5,NSW government service brand,Strong NSW admin signal,Official/admin context
+Service Victoria,institution,"VIC;Melbourne;regional VIC",5,Victorian government service brand,Strong VIC admin signal,Official/admin context
+TMR,institution,"QLD;Brisbane;regional QLD",4,Queensland Department of Transport and Main Roads,Queensland admin acronym signal,Ambiguous acronym
+DMIRS,institution,"WA;Perth;regional WA",4,WA government department acronym,WA admin signal,May be niche/formal
+AFL,sport,"VIC;Melbourne;TAS;SA;Adelaide;WA;Perth",3,Australian rules football league/code,Strongest cultural pull in VIC/TAS/SA/WA but national league; user-seeded,Do not over-score in NSW/QLD contexts
+footy,sport,"VIC;Melbourne;TAS;SA;Adelaide;WA;Perth;NSW;QLD",2,football code shorthand,Meaning varies by state/code; contextual not decisive,Ambiguous code signal
+NRL,sport,"NSW;Sydney;QLD;Brisbane",3,rugby league competition/code,Strongest cultural pull in NSW/QLD; user-seeded,National media mentions are common
+league,sport,"NSW;QLD;Sydney;Brisbane",2,rugby league shorthand,NSW/QLD football-code signal in sport context,Ambiguous general word
+A-League,sport,"NSW;VIC;QLD;SA;WA",1,soccer league,National weak signal,Not state-specific

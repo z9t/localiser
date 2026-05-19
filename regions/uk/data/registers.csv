@@ -1,0 +1,8 @@
+level,name,contexts,voice,sample
+1,Casual / conversational,"texts, mates, dialogue","dry, idiomatic, understated",Cheers — I’ll have a look this afternoon.
+2,Social / business / middle-class dinner,"work email, polite dinner","polite, indirect, lightly dry",I’m not sure that quite works.
+3,Formal / institutional,"official, academic, ceremonial","restrained, precise, stiff-upper-lip if needed",I would be grateful if you could provide the documents by Friday 22 May 2026.
+0,Very casual / mates,"texts, pub chat, close friends","short, dry, teasing but affectionate",Ta — I’ll sort it later.
+1.5,Everyday service / neighbours,"shops, school gates, local errands","polite, practical, light small talk","Hiya, could I just grab a receipt, please?"
+2.5,Workplace neutral,"emails, meetings, project updates","clear, hedged when disagreeing, not over-enthusiastic",I think we may need to revisit the timings.
+3.5,Public-sector / institutional,"councils, NHS-style notices, universities","plain, procedural, restrained",Please contact the office if you need this in another format.

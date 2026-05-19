@@ -1,0 +1,21 @@
+marker,type,weight,notes
+London,landmark,2,Major city signal but weak alone
+Manchester,landmark,2,Major city signal but weak alone
+Birmingham,landmark,2,Major city signal but weak alone
+Glasgow,landmark,2,Major city signal but weak alone
+Edinburgh,landmark,2,Major city signal but weak alone
+Cardiff,landmark,2,Capital city signal
+Belfast,landmark,2,Capital city signal
+NHS,institution,4,UK health service signal
+HMRC,institution,4,UK tax agency signal
+DVLA,institution,4,UK vehicle licensing signal
+BBC,institution/media,3,UK broadcaster signal; somewhat global
+Ofsted,institution,4,England education regulator signal
+Tesco,brand/place,3,UK supermarket signal
+Sainsbury's,brand/place,3,UK supermarket signal
+Waitrose,brand/place,3,UK supermarket/class signal
+Boots,brand/place,2,UK pharmacy chain signal; weak common word
+Oyster card,transport,4,London transport card
+National Rail,transport,3,UK transport signal
+council tax,admin,4,UK local tax signal
+postcode,admin,2,UK/Commonwealth; weak without other clues

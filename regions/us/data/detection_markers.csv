@@ -1,0 +1,21 @@
+marker,type,weight,notes
+New York,landmark,2,Major city signal but weak alone
+Los Angeles,landmark,2,Major city signal but weak alone
+Chicago,landmark,2,Major city signal but weak alone
+Houston,landmark,2,Major city signal but weak alone
+Washington DC,landmark,2,Capital signal
+DMV,institution,4,US motor vehicles office signal
+IRS,institution,4,US tax agency signal
+Social Security,institution,3,US federal benefit/admin signal
+Medicare,institution,2,US healthcare signal; ambiguous with AU if card/context absent
+Medicaid,institution,4,US healthcare programme signal
+Walmart,brand/place,3,US retail signal; also present elsewhere but US-heavy
+Target,brand/place,2,Weak because international/common word
+Home Depot,brand/place,3,US hardware retail signal
+Kroger,brand/place,4,US grocery chain signal
+7-Eleven,brand/place,1,Too international; weak signal
+interstate,transport,2,US road category signal in highway context
+I-95,transport,4,US interstate highway signal
+ZIP code,admin,4,US postal code wording
+state fair,culture,2,US cultural event signal
+Thanksgiving,culture,2,US/Canada; score with other clues

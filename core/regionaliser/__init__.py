@@ -1,0 +1,38 @@
+"""Local deterministic Regionaliser API."""
+from .engine import (
+    AnalyseResult,
+    CulturalContextResult,
+    DetectionResult,
+    LearnedLexiconResult,
+    LocaleDetectionResult,
+    NamedEntityResult,
+    Regionaliser,
+    RegionaliseOptions,
+    SportsLocalityResult,
+    analyse_text,
+    cultural_context,
+    detect_locale,
+    detect_region,
+    extract_named_entities,
+    regionalise,
+    sports_context,
+)
+
+__all__ = [
+    "AnalyseResult",
+    "CulturalContextResult",
+    "DetectionResult",
+    "LearnedLexiconResult",
+    "LocaleDetectionResult",
+    "NamedEntityResult",
+    "Regionaliser",
+    "RegionaliseOptions",
+    "SportsLocalityResult",
+    "analyse_text",
+    "cultural_context",
+    "detect_locale",
+    "detect_region",
+    "extract_named_entities",
+    "regionalise",
+    "sports_context",
+]

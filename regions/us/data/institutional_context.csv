@@ -1,0 +1,11 @@
+locale,domain,institution_or_term,meaning,typical_context,strength,caution,sources
+NYC/New York,transport/admin,MTA / MetroCard / OMNY,NYC transit system/account terms,"tap in, fare cap, subway delay, bridge/tunnel toll",high,Tourists also mention MTA/OMNY; combine with daily-life context.,mta.info; omny.info
+NYC/New York,education,CUNY / SUNY,NY public university systems,"commute to CUNY, SUNY application, in-state tuition",medium,"Statewide education clue, not city proof.",cuny.edu; suny.edu
+Boston/Massachusetts,government services,MassHealth / RMV,Massachusetts health coverage and motor-vehicle agency,"renew licence, MassHealth plan, RMV appointment",high,Admin context can be quoted by non-residents helping someone.,mass.gov
+Philadelphia,transport/admin,SEPTA Key,Philadelphia-area transit fare card/system,"tap the Key card, Regional Rail pass",high,Regional transit evidence; commuters/visitors also mention it.,septa.org
+Chicago,transport/admin,CTA / Ventra,Chicago transit agency and fare card,"Ventra balance, Red Line, L delay",high,Strong Chicago system clue; tourists may mention CTA.,transitchicago.com; ventrachicago.com
+Texas/Houston/Dallas,utilities/roads,ERCOT / TxTag,Texas grid/toll terms,"grid alert, toll tag, power outage",medium,ERCOT is statewide and media-visible; not exact locality.,ercot.com; txtag.org
+Atlanta,transport/admin,MARTA / Peach Pass,Atlanta transit and Georgia toll pass,"MARTA train, Peach Pass lane, airport run",high,MARTA is Atlanta-specific but also visitor-known.,itsmarta.com; peachpass.com
+San Francisco Bay Area,utilities/transport,PG&E / Clipper,Bay Area/NorCal utility and transit card,"outage map, Clipper balance, BART transfer",high,PG&E covers broad NorCal; Clipper stronger for Bay Area.,pge.com; clippercard.com
+Los Angeles/Southern California,transport/admin,Metro TAP / LADWP,LA transit card and city utility,"TAP card, DWP bill, Metro line",high,LA city vs county differences matter; avoid overclaiming.,metro.net; ladwp.com
+Seattle/PNW,transport/admin,ORCA / Sound Transit,Puget Sound fare card and transit agency,"ORCA balance, Link light rail, ferry transfer",high,Stronger for Seattle/Puget Sound than all PNW.,myorca.com; soundtransit.org

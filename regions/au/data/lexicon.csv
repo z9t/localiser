@@ -1,0 +1,60 @@
+term,category,register,region_or_group,meaning,usage_notes,avoid_when
+arvo,time,casual,national,afternoon,Common casual shortening,formal writing
+servo,place,casual,national,service station,Very common in speech,formal signage
+bottle-o,place,casual,national,bottle shop/liquor store,Often written bottle-o,formal health/policy
+brekkie,food,casual,national,breakfast,Warm informal tone,formal
+sunnies,clothing,casual,national,sunglasses,Everyday casual,formal
+mozzie,animal,casual,national,mosquito,Common summer term,formal
+trackies,clothing,casual,national,tracksuit pants,Casual clothing,formal
+rego,admin,casual/common,national,vehicle registration,Common even in ordinary speech,formal government copy may use registration
+tradie,person,casual/common,national,tradesperson,Common neutral-informal,very formal
+firie,person,casual/media,national,firefighter,Media/casual,formal emergency comms
+ambo,person,casual/media,national,paramedic/ambulance officer,Common media shorthand,formal health comms
+pollie,person,casual/media,national,politician,Often mildly dismissive,formal
+journo,person,casual/media,national,journalist,Common media shorthand,formal
+sickie,work,casual,national,sick day,Often implies casual taking of leave,formal HR
+Maccas,food/place,casual,national,McDonald’s,Officially embraced in AU branding,formal
+cuppa,food/drink,casual,national,cup of tea/coffee,Warm domestic/social,formal
+chockers,state,casual,national,very full/busy,Car park is chockers,formal
+heaps,intensifier,casual,national,a lot/very,"heaps good, heaps of time",formal
+reckon,stance,casual/common,national,think/suppose,Can be natural in speech,formal analysis
+keen,stance,casual/common,national,interested/willing,Keen to come?,formal
+dodgy,quality,casual/common,national,suspicious/unreliable/poor quality,Useful everyday judgement,formal without explanation
+crook,health/quality,casual,national,sick or faulty,I’m crook; crook engine,formal
+sook,person/behaviour,casual,national,overly sensitive/complaining person,Can be insulting,professional
+drongo,insult,casual,older/national,fool/idiot,Mild comic insult,serious contexts
+bludger,person,casual,national,lazy person/freeloader,Class/moral judgement,professional
+bogan,sociolect,casual,national,class-coded uncultured/working-class stereotype,Use analytically/carefully,as generic Australian
+ocker,sociolect,casual,national,"broad, stereotypically Australian manner",Often comic/retro,default voice
+no worries,pragmatic phrase,casual/common,national,no problem/you’re welcome/it’s fine,Very common,very formal
+all good,pragmatic phrase,casual/common,national,fine/resolved/no issue,Common workplace casual,formal
+yeah nah,discourse marker,casual,national,acknowledge then disagree/refuse,Use sparingly,formal
+nah yeah,discourse marker,casual,national,agreement after hesitation,Use sparingly,formal
+too easy,pragmatic phrase,casual,national,no problem/can do,Service/tradie tone,formal
+righto,discourse marker,casual,national,okay/acknowledged,Older/casual,formal
+ta,thanks,casual,national,thanks,Short informal thanks,formal
+cheers,thanks/signoff,casual/common,national,thanks/goodbye,Common email signoff if not too formal,formal official
+mate,address,casual,national,friend/person/address term,Tone depends context; can be warm or confrontational,formal
+old mate,reference,casual,national,that guy/person,Often humorous distancing,formal
+hard yakka,work,casual,national,hard work,Older but understood,formal
+she’ll be right,attitude,casual,national,it will be okay,Can imply complacency,safety-critical
+strewth,exclamation,casual/archaic,older/ocker,surprise,Sounds performative now,normal modern voice
+crikey,exclamation,casual/performative,export/ocker,surprise,Steve Irwin/export-coded,unless parody
+ute,vehicle,common,national,utility vehicle/pickup,Standard AU term,none
+doona,home,common,national,duvet/comforter,Standard domestic term,formal retail can still use
+esky,object,casual/common,national,portable cooler,Brand generic,formal generic copy
+thongs,clothing,common,national,flip-flops,Footwear,international ambiguity
+lollies,food,common,national,candy/sweets,Everyday term,formal nutrition maybe confectionery
+bathers,clothing,regional,VIC/SA/WA/TAS,swimwear,Regional variation,national copy without checking
+swimmers,clothing,regional,NSW/QLD,swimwear,Regional variation,national copy without checking
+togs,clothing,regional,QLD/NZ overlap,swimwear,Regional/older,national default
+potato cake,food,regional,VIC/TAS,fried potato scallop,Regional food term,outside region
+potato scallop,food,regional,NSW/QLD,fried potato cake,Regional food term,outside region
+fritz,food,regional,SA,processed sandwich meat,SA-specific,national default
+parmi,food,regional,VIC/common,chicken parmigiana,Pub-food term,where parma preferred
+parma,food,regional,VIC,chicken parmigiana,Melbourne/VIC-coded,national certainty
+bubbler,object,regional,NSW/QLD,drinking fountain,Regional,national default
+tap,object,common,national,faucet,Standard AU,none
+bin night,routine,suburban,national suburban,night bins go out,Strong lived suburban signal,formal
+schoolies,event,youth,QLD/national,post-school graduation holiday,Cultural event,non-AU audience without context
+smoko,work,casual/tradie,working-class/rural,short work break,Older/tradie/rural,white-collar formal

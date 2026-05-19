@@ -1,0 +1,11 @@
+locale,domain,institution_or_term,meaning,typical_context,strength,caution,sources
+NSW/Sydney,government services,Service NSW,state service portal/app and shopfronts,"licence renewal, rego, fines, vouchers, identity checks",high,"State-service mentions are strong system evidence, not residence proof.",service.nsw.gov.au
+NSW/Sydney,health,Medicare / bulk billing,national health/payment language common in local life,"GP appointment, rebate, bulk-billed consult",medium,National AU signal; combine with state clues.,servicesaustralia.gov.au
+NSW/Sydney,utilities/roads,eTag / Linkt / toll notice,Sydney toll-road payment/admin context,M2/M5/toll notice/account top-up,medium,Toll systems cross states and visitor drivers mention them too.,linkt.com.au
+VIC/Melbourne,government services,Service Victoria,Victorian state service/account portal,"licence, Working with Children Check, QR-era habits",high,State-service evidence only; do not infer identity.,service.vic.gov.au
+VIC/Melbourne,education,VCE / VTAC,Victorian senior secondary/university admissions terms,"ATAR, subject scores, preferences, uni offers",high,Age/study-context specific.,vcaa.vic.edu.au; vtac.edu.au
+QLD/Brisbane,government services,TMR / Queensland Transport,Queensland transport/road authority shorthand,"licence, rego, demerits, roadworks",high,TMR can be official/administrative rather than conversational.,tmr.qld.gov.au
+WA/Perth,utilities,Synergy / Water Corporation,WA household utility providers,"power bill, water bill, outage notice",high,Perth/WA household context; renters may not mention it.,synergy.net.au; watercorporation.com.au
+SA/Adelaide,utilities,SA Power Networks,South Australian electricity distributor,"outage map, power restoration, storm faults",high,"Strong SA infrastructure clue, not personal identity.",sapowernetworks.com.au
+TAS/Hobart,government services,Service Tasmania,Tasmanian state service shopfront/portal,"licence, births/deaths/marriages, concessions",high,State-system evidence only.,service.tas.gov.au
+ACT/Canberra,government services,Access Canberra,ACT government service portal,"rego, licence, rates, parking, fix-my-street",high,Canberra/ACT system clue; visitors may use parking services.,accesscanberra.act.gov.au

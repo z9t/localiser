@@ -1,0 +1,47 @@
+marker,scope,locales,weight,meaning,notes,caution
+Oyster card,transport,London,5,TfL smartcard for London travel,Strong London transport/admin marker,Also used by visitors
+TfL,transport,London,5,Transport for London,Common in London journey planning and service discussion,Can appear in national news or visitor contexts
+the Tube,transport,London,4,London Underground,Everyday London transport term,Widely understood across the UK; context matters
+Overground,transport,London,4,London Overground rail network,Specific London rail mode in TfL system,Generic adjective without transport context
+DLR,transport,London,4,Docklands Light Railway,East/south-east London transport marker,Tourism/business travel contexts common
+ULEZ,transport,London,5,Ultra Low Emission Zone,Strong London transport/admin marker,Politicised nationally; can be mentioned outside London
+borough,admin,London,3,London local authority area term,Common in London council/service contexts,Also used elsewhere in England
+Senedd,institution,Wales,5,Welsh Parliament,Strong Wales institutional marker,Can appear in UK-wide politics/news
+Welsh Government,institution,Wales,5,devolved government in Wales,Strong Wales administrative marker,Could be quoted by non-Welsh sources
+Transport for Wales,transport,Wales;Border counties,5,Welsh rail and bus transport body,Strong Wales/cross-border commute marker,Routes extend into England
+TrawsCymru,transport,Wales,5,long-distance bus network in Wales,Specific Welsh public transport marker,May appear in travel planning
+Saltirecard,transport,Scotland,5,Scottish smartcard for public transport/entitlements,Strong Scotland transport/admin marker,Official or travel contexts may mention it
+ScotRail,transport,Scotland,5,national rail operator for Scotland,Strong Scottish transport marker,Used by tourists and national rail users
+CalMac,transport,Scotland;Highlands and Islands,5,Caledonian MacBrayne ferry operator,Strong west coast/island Scotland marker,Travel/tourism contexts common
+SPT,transport,Scotland;Glasgow,4,Strathclyde Partnership for Transport,West of Scotland transport body,Acronym ambiguous outside transport
+Glasgow Subway,transport,Scotland;Glasgow,5,subway system in Glasgow,Strong city-level Scotland marker,Visitors may mention it
+NHS Scotland,institution,Scotland,5,Scotland devolved health service identity,Strong administrative marker,Cross-UK comparisons may quote it
+Highers,education,Scotland,4,Scottish school qualifications,Strong education-system marker,Universities elsewhere may discuss them
+National 5,education,Scotland,4,Scottish secondary qualification,Specific Scottish education marker,Education comparison context can be external
+Stormont,institution,Northern Ireland,5,Northern Ireland Assembly/government metonym,Strong Northern Ireland political marker,Also common in UK-wide news
+Translink,transport,Northern Ireland,5,Northern Ireland public transport operator,Strong NI transport marker,Name used elsewhere globally
+Glider,transport,Northern Ireland;Belfast,5,Belfast rapid transit bus service,Strong Belfast/NI transport marker,Generic word otherwise; needs transport context
+Northern Ireland Housing Executive,institution,Northern Ireland,5,public housing authority in Northern Ireland,Strong NI administrative marker,Policy research may quote it
+Tyne and Wear Metro,transport,North East;Newcastle;Sunderland,5,light rail/metro around Newcastle and Sunderland,Strong North East transport marker,Tourism/rail enthusiast contexts possible
+Nexus,transport,North East,4,Tyne and Wear transport executive brand,Regional transport/admin marker,Generic word/company name; require transport context
+parmo,food,North East;Teesside,5,Teesside breaded chicken dish,Strong Teesside/North East food marker,Known nationally through media; not proof
+Bee Network,transport,Greater Manchester;North of England,5,Greater Manchester integrated transport brand,Strong Greater Manchester marker,Newer term; policy/news context possible
+Metrolink,transport,Greater Manchester;North of England,5,Manchester tram system,Strong Greater Manchester marker,Also used abroad; check UK context
+Merseyrail,transport,Liverpool City Region;North of England,5,rail network around Liverpool and Merseyside,Strong Liverpool City Region marker,Visitors and commuters beyond residence use it
+MCard,transport,West Yorkshire;Yorkshire,5,West Yorkshire smart travel card,Strong West Yorkshire transport marker,Official/ticketing contexts possible
+Supertram,transport,Sheffield;South Yorkshire;Yorkshire,5,Sheffield tram network,Strong Sheffield/South Yorkshire marker,Visitor/infrastructure contexts possible
+tram train,transport,South Yorkshire;Yorkshire,4,Sheffield-Rotherham tram-train service,Specific South Yorkshire transport marker,Generic transport concept elsewhere
+Transport for West Midlands,transport,West Midlands,5,West Midlands transport authority,Strong regional transport/admin marker,National devolution/rail contexts may quote it
+Swift card,transport,West Midlands,5,West Midlands smart travel card,Strong West Midlands transport marker,Generic word otherwise
+West Midlands Metro,transport,West Midlands,5,tram/light rail system in the West Midlands,Strong West Midlands marker,Transport news can be national
+WMCA,admin,West Midlands,4,West Midlands Combined Authority,Strong admin marker with context,Acronym ambiguous without local context
+balti triangle,food,Birmingham;West Midlands,4,Birmingham area associated with balti restaurants,Food/place marker,Avoid ethnic/class cliché; weak alone
+EMR,transport,East Midlands;Midlands,4,East Midlands Railway,Regional rail operator marker,Acronym ambiguous; require rail context
+Robin Hood Network,transport,Nottingham;East Midlands;Midlands,5,Nottingham-area public transport ticketing,Strong Nottingham transport marker,Tourism name can mislead
+Nottingham Express Transit,transport,Nottingham;East Midlands;Midlands,5,Nottingham tram system,Strong Nottingham/East Midlands marker,Visitor/infrastructure contexts possible
+First Kernow,transport,Cornwall;South West,5,Cornwall bus operator brand,Strong Cornwall/South West transport marker,Commercial operator; visitors may mention it
+Devon and Cornwall Police,institution,Devon;Cornwall;South West,5,regional police force,Strong South West admin marker,Crime/news context may be non-local
+Great Western Railway,transport,South West;West of England;Wales,3,rail operator serving west/south-west routes,Useful but broad west-facing transport marker,Not uniquely South West
+guided busway,transport,Cambridgeshire;East Anglia,5,Cambridgeshire Guided Busway,Strong Cambridgeshire transport marker,Generic infrastructure term elsewhere
+Greater Anglia,transport,East Anglia,5,rail operator serving East Anglia,Strong East Anglia transport marker,Also London commuter context
+Broads Authority,institution,Norfolk;Suffolk;East Anglia,5,statutory authority for the Norfolk and Suffolk Broads,Strong East Anglia institutional marker,Tourism/environmental contexts may be external

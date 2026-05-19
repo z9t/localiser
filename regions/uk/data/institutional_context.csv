@@ -1,0 +1,11 @@
+locale,domain,institution_or_term,meaning,typical_context,strength,caution,sources
+London,government/transport,TfL / Oyster / council tax,London transport plus borough council admin,"Oyster balance, TfL notice, council tax band",high,Tourists mention TfL/Oyster; council-tax context is stronger.,tfl.gov.uk; gov.uk/council-tax
+London,health,NHS 111 / GP surgery,UK health navigation language,"ring 111, register with a GP, prescription charge",medium,National UK clue; not London-specific.,nhs.uk
+Scotland/Glasgow,government/education,NHS Scotland / SQA / Highers,Scottish public services and school exams,"Highers results, NHS Scotland letter",high,"Scotland-wide, not Glasgow-only.",nhsinform.scot; sqa.org.uk
+Scotland/Edinburgh,government,Scottish Government / council tax,devolved/admin context,"council-tax band, ScotGov guidance, mygov.scot",high,Formal/political contexts may quote it externally.,gov.scot; mygov.scot
+Wales/Cardiff,government/education,Senedd / NHS Wales / Welsh Bacc,Welsh devolved institutions and schooling,"Welsh Bacc, NHS Wales appointment, Senedd vote",high,Do not infer language identity from Wales institution mentions.,senedd.wales; nhs.wales; qualificationswales.org
+Northern Ireland/Belfast,government/services,nidirect / Stormont / Translink,"NI service portal, assembly, transport","nidirect form, Stormont debate, Glider bus",high,Avoid inferring community background or politics.,nidirect.gov.uk; translink.co.uk
+North East/Newcastle,transport,Tyne and Wear Metro / Nexus,North East metro/public transport system,"Metro delay, Pop card, Nexus update",high,"Specific to Tyne and Wear, not all North East.",nexus.org.uk
+Greater Manchester,transport/governance,Bee Network / GMCA,Greater Manchester transport/devolution terms,"Bee Network bus, GMCA announcement",high,Greater Manchester not all North West.,beenetwork.com; greatermanchester-ca.gov.uk
+Yorkshire/Leeds,transport/health,MCard / NHS trust names,West Yorkshire transport and local NHS context,"MCard pass, Leeds Teaching Hospitals appointment",medium,Local NHS trust mentions require context.,m-card.co.uk; leedsth.nhs.uk
+West Midlands/Birmingham,transport/governance,Swift card / WMCA,West Midlands transport card and combined authority,"Swift card, tram, WMCA mayor",high,"West Midlands region, not Birmingham-only.",tfwm.org.uk; wmca.org.uk

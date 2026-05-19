@@ -1,0 +1,21 @@
+marker,type,weight,notes
+Toronto,landmark,2,Major city signal but weak alone
+Vancouver,landmark,2,Major city signal but weak alone
+Montreal,landmark,2,Major city signal but weak alone
+Calgary,landmark,2,Major city signal but weak alone
+Ottawa,landmark,2,Capital signal
+Winnipeg,landmark,2,City signal
+Halifax,landmark,2,City signal
+Service Canada,institution,4,Canadian federal service signal
+CRA,institution,4,Canada Revenue Agency signal
+OHIP,institution,4,Ontario health insurance signal
+MSP,institution,3,BC health plan signal; acronym ambiguous elsewhere
+RCMP,institution,4,Canadian federal police signal
+CBC,institution/media,3,Canadian broadcaster signal; acronym can be ambiguous
+Tim Hortons,brand/place,4,Strong Canadian everyday signal though present elsewhere
+Loblaws,brand/place,3,Canadian grocery signal
+Canadian Tire,brand/place,4,Strong Canadian retail signal
+Shoppers Drug Mart,brand/place,4,Canadian pharmacy chain signal
+Presto card,transport,4,Ontario transit card signal
+TTC,transport,3,Toronto transit signal; acronym ambiguity possible
+postal code,admin,2,Canadian wording; weak without other clues

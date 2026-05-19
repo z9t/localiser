@@ -1,0 +1,8 @@
+level,name,contexts,voice,sample
+1,Casual / conversational,"texts, friends, dialogue","polite, North American, lightly understated",For sure — I’ll check it this afternoon.
+2,Social / business / middle-class dinner,"work email, public copy","polite directness, less hype than US",Thanks for sending this over. I’ve had a look.
+3,Formal / institutional,"government, academic, official","clear, bilingual/federal-aware where relevant","Please submit the documents by 5:00 p.m. on Friday, 22 May 2026."
+0,Very casual / friends,"texts, roommates, close friends","friendly, concise, North American",No worries — I’ll grab it on my way.
+1.5,Everyday service / neighbours,"stores, schools, building lobby, local errands","polite, direct, low-drama","Hi, could I get a bag as well, please?"
+2.5,Workplace neutral,"emails, meetings, project updates","clear, courteous, modest enthusiasm",Thanks — I’ll take a look and circle back this afternoon.
+3.5,Public-sector / institutional,"municipal/provincial/federal notices, universities","plain-language, bilingual-aware when relevant",Please contact our office if you need the information in another format.
