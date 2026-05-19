@@ -1,7 +1,7 @@
 ---
 name: localiser-light
-description: Use when making quick AU/US/UK/CA English localisation edits with Regionaliser's local deterministic CLI, without loading the full cultural/reference tables. Prefer for compact default profiles and general agents that only need basic rewrite, detect, and MCP/plugin entrypoints.
-version: 1.0.0
+description: Use for quick dependency-free AU/US/UK/CA English localisation edits with the standalone localiser-light CLI. Prefer for compact default profiles and general agents that only need basic rewrite, detect, and analyse.
+version: 0.1.0
 author: Regionaliser
 license: MIT
 metadata:
@@ -12,14 +12,26 @@ metadata:
 
 # Localiser Light
 
-## Overview
+Compact dependency-free localiser for everyday AU/US/UK/CA English edits.
 
-Compact Regionaliser skill for everyday localisation. It gives agents the commands and guardrails without the full regional/cultural tables.
+## Setup
 
-Canonical source of truth:
+Install the standalone package:
 
-```text
-/Users/max/Code/regionaliser
+```bash
+python3 -m pip install --user git+https://github.com/z9t/localiser-light.git
+```
+
+Install this skill into common agent dirs:
+
+```bash
+localiser-light install-skill --all
+```
+
+One-shot installer after the repo is public:
+
+```bash
+python3 -c "$(curl -fsSL https://raw.githubusercontent.com/z9t/localiser-light/main/install.py)"
 ```
 
 Supported regions:
@@ -28,7 +40,7 @@ Supported regions:
 au, us, uk, ca
 ```
 
-Use the full `localiser` skill when you need evidence scoring, cultural context banks, sports/locality context, legal/research precision, MCP/plugin details, or optional NER.
+Use the full `localiser`/Regionaliser repo when you need cultural/context datasets, locality/sports context, custom lexicons, Hermes plugin/MCP, or optional Stanza NER protection.
 
 ## Quick Rules
 
@@ -38,96 +50,60 @@ Use the full `localiser` skill when you need evidence scoring, cultural context 
 4. Detection is evidence, not proof.
 5. If unsure, run the CLI with `--json` and inspect changes/notes.
 
-## Setup Check
-
-From the repo root:
-
-```bash
-cd /Users/max/Code/regionaliser
-python3 core/scripts/build_db.py --regions au,us,uk,ca
-python3 core/scripts/validate.py
-```
-
-If baseline analysis is needed:
-
-```bash
-python3 core/scripts/install_baseline.py
-python3 core/scripts/build_db.py --regions au,us,uk,ca
-```
-
 ## Rewrite Text
 
 ```bash
-python3 core/scripts/regionalise.py --region au --register casual --density light   "I walked on the sidewalk to the gas station and liked the color."
+localiser-light --region au "I walked on the sidewalk to the gas station and liked the color."
 ```
 
 Use stdin + JSON for agent workflows:
 
 ```bash
-printf 'The sidewalk color was weird.' |   python3 core/scripts/regionalise.py --region uk --json
+printf 'The sidewalk color was weird.' | localiser-light --region uk --json
 ```
 
 Write to a file:
 
 ```bash
-python3 core/scripts/regionalise.py --region ca --output out.txt   "The candy was on the sidewalk."
+localiser-light --region ca --output out.txt "The candy was on the sidewalk."
 ```
 
 ## Detect Region
 
 ```bash
-python3 core/scripts/regionalise.py --detect --regions au,us,uk,ca --json   "I topped up my Opal card before stopping at Woolies."
+localiser-light --detect --regions au,us,uk,ca --json "I topped up my Opal card before stopping at Woolies."
 ```
 
-Read the returned candidates, confidence, evidence, and notes. Do not force a region for generic or mixed text.
+Read candidates, confidence, evidence, and notes. Do not force a region for generic or mixed text.
 
 ## Analyse/Diff
 
 ```bash
-python3 core/scripts/regionalise.py --analyse --json   "I went to Woolies after smoko and grabbed a servo pie."
+localiser-light --analyse --json "I went to Woolies after smoko and grabbed a servo pie."
 ```
 
-Use this to find non-baseline words and known regional clues. Treat names, typos, brands, and jargon as candidates only.
+Use this to find non-baseline words and known regional clues. The built-in baseline is tiny; treat names, typos, brands, and jargon as candidates only.
 
 ## Python API
 
 ```python
-from core.regionaliser import analyse_text, detect_region, regionalise
+from localiser_light import analyse, detect_region, regionalise
 
-regionalise("Text to regionalise", region="au", register="casual", density="light")
+regionalise("Text to regionalise", region="au")
 detect_region("I topped up my Opal card before Woolies.")
-analyse_text("I went to Woolies after smoko.")
+analyse("I went to Woolies after smoko.")
 ```
-
-## Hermes Plugin / MCP Pointers
-
-If tool integration is needed, install from the repo:
-
-```bash
-python3 core/scripts/install_hermes_plugin.py --target ~/.hermes/plugins/localiser --force
-hermes plugins enable localiser
-```
-
-Stdio MCP command for Claude/Codex/Hermes clients:
-
-```bash
-python3 /Users/max/Code/regionaliser/core/scripts/regionaliser_mcp.py
-```
-
-Use full `localiser` for the complete tool list and config examples.
 
 ## Verification
 
 ```bash
-python3 core/scripts/validate.py
-python3 core/scripts/build_db.py --regions au,us,uk,ca
-python3 -m unittest discover -s tests -q
-python3 core/scripts/regionalise.py --region au --json "The sidewalk color was weird." | python3 -m json.tool >/dev/null
+localiser-light --region au --json "The sidewalk color was weird." | python3 -m json.tool >/dev/null
+localiser-light --detect --json "I topped up my Opal card before Woolies."
 ```
 
 ## Common Pitfalls
 
-- Do not copy old generated regional skills into legal/project folders; install from the canonical Regionaliser repo.
 - Do not overdo slang or cultural references.
 - Do not claim a writer is Australian/American/British/Canadian; say the text has evidence for a region.
-- Do not use this light skill for nuanced subregional/legal/research questions; load `localiser` instead.
+- Do not use this light skill for nuanced subregional/legal/research questions; load full `localiser` instead.
+- Do not expect Stanza here; optional NLP stays in the full localiser.
