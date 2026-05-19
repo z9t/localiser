@@ -1,7 +1,7 @@
 [project]
 name = "localiser"
 version = "0.1.0"
-description = "Local deterministic English regionalisation CLI/API backed by Localiser CSV/SQLite data."
+description = "Local deterministic English localisation CLI/API backed by Localiser CSV/SQLite data."
 requires-python = ">=3.10"
 dependencies = []
 
@@ -10,7 +10,6 @@ ner = ["stanza>=1.8"]
 
 [project.scripts]
 localise = "core.localiser.cli:main"
-regionalise = "core.localiser.cli:main"
 localiser-mcp = "core.localiser.mcp_server:main"
 
 [tool.setuptools]

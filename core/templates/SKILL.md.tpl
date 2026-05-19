@@ -1,7 +1,7 @@
 ---
 name: {{skill_name}}
 description: {{description}}
-argument-hint: "[text to regionalise, register/generation/region to target, or cultural localness question]"
+argument-hint: "[text to localise, register/generation/region to target, or cultural localness question]"
 ---
 
 # {{display_name}}
@@ -34,44 +34,44 @@ and makes no AI calls.
 CLI:
 
 ```bash
-python3 core/scripts/regionalise.py --region {{region_code}} --register casual --density light "Text to regionalise"
+python3 core/scripts/localise.py --region {{region_code}} --register casual --density light "Text to localise"
 ```
 
 Stdin / JSON:
 
 ```bash
-printf 'Text to regionalise' | python3 core/scripts/regionalise.py --region {{region_code}} --json
+printf 'Text to localise' | python3 core/scripts/localise.py --region {{region_code}} --json
 ```
 
 Detect likely source region instead of rewriting:
 
 ```bash
-python3 core/scripts/regionalise.py --detect --json "Text to classify"
+python3 core/scripts/localise.py --detect --json "Text to classify"
 ```
 
 Diff against baseline English and known regional clues:
 
 ```bash
-python3 core/scripts/regionalise.py --analyse --json "Text or transcript to inspect"
+python3 core/scripts/localise.py --analyse --json "Text or transcript to inspect"
 ```
 
 Detect AU state/capital-city locale clues:
 
 ```bash
-python3 core/scripts/regionalise.py --detect-locale --json "I topped up my Opal before grabbing a potato scallop."
+python3 core/scripts/localise.py --detect-locale --json "I topped up my Opal before grabbing a potato scallop."
 ```
 
 Create a reviewable custom lexicon scaffold from examples:
 
 ```bash
-python3 core/scripts/regionalise.py --learn "Oka bogan" --learn-out custom "Example text"
+python3 core/scripts/localise.py --learn "Oka bogan" --learn-out custom "Example text"
 ```
 
 Python API used by the CLI:
 
 ```python
-from core.localiser import analyse_text, detect_region, regionalise
-regionalise("Text to regionalise", region="{{region_code}}", register="casual", density="light")
+from core.localiser import analyse_text, detect_region, localise
+localise("Text to localise", region="{{region_code}}", register="casual", density="light")
 ```
 
 Use CLI/API output as the first pass, then apply judgement with this skill's

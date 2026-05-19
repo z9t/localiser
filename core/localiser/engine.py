@@ -1,4 +1,4 @@
-"""Deterministic local text regionalisation and region detection engine.
+"""Deterministic local text localisation and region detection engine.
 
 The engine is intentionally conservative: it uses the Localiser CSV data via a
 SQLite database, applies spelling/vocabulary substitutions, and can score region
@@ -19,7 +19,7 @@ REGION_CODES = {"au", "us", "uk", "ca"}
 
 
 @dataclass
-class RegionaliseOptions:
+class LocaliseOptions:
     region: str
     register: str = "neutral"
     generation: str = "neutral"
@@ -34,7 +34,7 @@ class RegionaliseOptions:
 
 
 @dataclass
-class RegionaliseResult:
+class LocaliseResult:
     text: str
     region: str
     changes: list[dict[str, str]] = field(default_factory=list)
@@ -190,8 +190,8 @@ class Localiser:
                 f"Localiser DB not found: {self.db_path}. Run: python3 core/scripts/build_db.py"
             )
 
-    def regionalise(self, text: str, **kwargs) -> RegionaliseResult:
-        opts = RegionaliseOptions(db_path=self.db_path, **kwargs)
+    def localise(self, text: str, **kwargs) -> LocaliseResult:
+        opts = LocaliseOptions(db_path=self.db_path, **kwargs)
         with sqlite3.connect(self.db_path) as con:
             con.row_factory = sqlite3.Row
             available = self._region_codes(con)
@@ -207,7 +207,7 @@ class Localiser:
             out = self._apply_register(con, out, opts, changes)
             out = self._apply_light_lexicon(con, out, opts, changes)
             notes = self._notes(con, opts) + stanza_notes
-            return RegionaliseResult(text=out, region=opts.region, changes=changes, notes=notes)
+            return LocaliseResult(text=out, region=opts.region, changes=changes, notes=notes)
 
     def detect(self, text: str, regions: Iterable[str] | None = None, max_evidence: int = 12) -> DetectionResult:
         """Score likely source region from local clues in text.
@@ -573,7 +573,7 @@ class Localiser:
         rows.sort(key=lambda r: (order.get(str(r.get("generation", "")).lower(), 9), str(r.get("reference", "")).lower()))
         return rows[:max_rows]
 
-    def _apply_vocabulary(self, con, text: str, opts: RegionaliseOptions, changes):
+    def _apply_vocabulary(self, con, text: str, opts: LocaliseOptions, changes):
         rows = self._rows(con, "vocabulary", opts.region)
         pairs: list[tuple[str, str, str]] = []
         for row in rows:
@@ -589,7 +589,7 @@ class Localiser:
                         pairs.append((source, local, "vocabulary"))
         return replace_pairs(text, pairs, changes, protected_spans=opts.protected_spans)
 
-    def _apply_spelling(self, con, text: str, opts: RegionaliseOptions, changes):
+    def _apply_spelling(self, con, text: str, opts: LocaliseOptions, changes):
         pairs: list[tuple[str, str, str]] = []
         for row in self._rows(con, "spelling", opts.region):
             data = json.loads(row["data"])
@@ -605,7 +605,7 @@ class Localiser:
                 pairs.extend((avoid, uses[0], "spelling") for avoid in avoids)
         return replace_pairs(text, pairs, changes, protected_spans=opts.protected_spans)
 
-    def _apply_register(self, con, text: str, opts: RegionaliseOptions, changes):
+    def _apply_register(self, con, text: str, opts: LocaliseOptions, changes):
         register = opts.register.lower()
         if register in {"neutral", "none"}:
             return text
@@ -618,7 +618,7 @@ class Localiser:
             return replace_pairs(text, [(a, b, "register") for a, b in casual_pairs], changes, protected_spans=opts.protected_spans)
         return text
 
-    def _apply_light_lexicon(self, con, text: str, opts: RegionaliseOptions, changes):
+    def _apply_light_lexicon(self, con, text: str, opts: LocaliseOptions, changes):
         if opts.density == "none" or opts.register in {"formal", "institutional"}:
             return text
         rows = [json.loads(r["data"]) for r in self._rows(con, "lexicon", opts.region)]
@@ -699,7 +699,7 @@ class Localiser:
 
         return evidence
 
-    def _notes(self, con, opts: RegionaliseOptions) -> list[str]:
+    def _notes(self, con, opts: LocaliseOptions) -> list[str]:
         notes = ["Local deterministic mode: no AI/model calls; CSV data loaded from SQLite."]
         if opts.class_layer != "neutral":
             notes.append("Class/sociolect options are intentionally conservative; no caricature markers are inserted automatically.")
@@ -708,8 +708,8 @@ class Localiser:
         return notes
 
 
-def regionalise(text: str, region: str, **kwargs) -> str:
-    return Localiser(kwargs.pop("db_path", DEFAULT_DB)).regionalise(text, region=region, **kwargs).text
+def localise(text: str, region: str, **kwargs) -> str:
+    return Localiser(kwargs.pop("db_path", DEFAULT_DB)).localise(text, region=region, **kwargs).text
 
 
 def detect_region(text: str, **kwargs) -> DetectionResult:

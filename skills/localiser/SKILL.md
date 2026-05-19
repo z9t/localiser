@@ -1,6 +1,6 @@
 ---
 name: localiser
-description: Use when regionalising English across AU/US/UK/CA with the full Localiser dataset, CLI, MCP server, Hermes plugin, cultural-context banks, source-region detection, baseline analysis, and optional Stanza NER. Prefer for agents/profiles doing research, legal drafting, QA, or nuanced country/locality voice work.
+description: Use when localising English across AU/US/UK/CA with the full Localiser dataset, CLI, MCP server, Hermes plugin, cultural-context banks, source-region detection, baseline analysis, and optional Stanza NER. Prefer for agents/profiles doing research, legal drafting, QA, or nuanced country/locality voice work.
 version: 1.0.0
 author: Localiser
 license: MIT
@@ -81,8 +81,8 @@ Preference controls:
 
 ```bash
 # one command
-python3 core/scripts/regionalise.py --region au --stanza --json "License Group liked the color."
-python3 core/scripts/regionalise.py --region au --no-stanza --json "License Group liked the color."
+python3 core/scripts/localise.py --region au --stanza --json "License Group liked the color."
+python3 core/scripts/localise.py --region au --no-stanza --json "License Group liked the color."
 
 # profile/session default
 export LOCALISER_USE_STANZA=1   # on
@@ -96,19 +96,19 @@ When enabled for rewrite/analyse, Stanza NER protects named entities from false 
 Rewrite text:
 
 ```bash
-python3 core/scripts/regionalise.py --region au --register casual --density light   "I walked on the sidewalk to the gas station and liked the color."
+python3 core/scripts/localise.py --region au --register casual --density light   "I walked on the sidewalk to the gas station and liked the color."
 ```
 
 Stdin and JSON:
 
 ```bash
-printf 'The sidewalk is near the gas station.' |   python3 core/scripts/regionalise.py --region uk --json
+printf 'The sidewalk is near the gas station.' |   python3 core/scripts/localise.py --region uk --json
 ```
 
 Write to file:
 
 ```bash
-python3 core/scripts/regionalise.py --region ca --output out.txt   "The candy was on the sidewalk."
+python3 core/scripts/localise.py --region ca --output out.txt   "The candy was on the sidewalk."
 ```
 
 Regions:
@@ -133,25 +133,25 @@ Useful rewrite controls:
 Detect likely source region:
 
 ```bash
-python3 core/scripts/regionalise.py --detect --regions au,us,uk,ca --json   "I topped up my Opal card before stopping at Woolies."
+python3 core/scripts/localise.py --detect --regions au,us,uk,ca --json   "I topped up my Opal card before stopping at Woolies."
 ```
 
 Analyse against baseline English and known regional evidence:
 
 ```bash
-python3 core/scripts/regionalise.py --analyse --json   "I went to Woolies after smoko and grabbed a servo pie."
+python3 core/scripts/localise.py --analyse --json   "I went to Woolies after smoko and grabbed a servo pie."
 ```
 
 Detect AU state/capital-city locality clues:
 
 ```bash
-python3 core/scripts/regionalise.py --detect-locale --locale-region au --json   "I topped up my Opal before grabbing a potato scallop and watching the NRL."
+python3 core/scripts/localise.py --detect-locale --locale-region au --json   "I topped up my Opal before grabbing a potato scallop and watching the NRL."
 ```
 
 Extract named entities with optional Stanza:
 
 ```bash
-python3 core/scripts/regionalise.py --ner --json   "Sydney called Service NSW after Qantas moved the meeting."
+python3 core/scripts/localise.py --ner --json   "Sydney called Service NSW after Qantas moved the meeting."
 ```
 
 ## Context Banks
@@ -159,19 +159,19 @@ python3 core/scripts/regionalise.py --ner --json   "Sydney called Service NSW af
 Sports/locality context:
 
 ```bash
-python3 core/scripts/regionalise.py --sports --region uk --locales London --json
+python3 core/scripts/localise.py --sports --region uk --locales London --json
 ```
 
 Institutional/media context:
 
 ```bash
-python3 core/scripts/regionalise.py --context --region ca --locales Ontario/Toronto --json
+python3 core/scripts/localise.py --context --region ca --locales Ontario/Toronto --json
 ```
 
 Generational cultural references and short quote fragments:
 
 ```bash
-python3 core/scripts/regionalise.py --culture --region au --generation gen-x --json
+python3 core/scripts/localise.py --culture --region au --generation gen-x --json
 ```
 
 Important: context rows are evidence and flavour guides, not proof of residence, class, politics, ethnicity, or allegiance.
@@ -185,11 +185,11 @@ from core.localiser import (
     detect_locale,
     detect_region,
     extract_named_entities,
-    regionalise,
+    localise,
     sports_context,
 )
 
-regionalise("Text to regionalise", region="au", register="casual", density="light")
+localise("Text to localise", region="au", register="casual", density="light")
 detect_region("I topped up my Opal card before Woolies.")
 detect_locale("I topped up my Opal.", region="au")
 sports_context("uk", locales=["London"])
@@ -209,7 +209,7 @@ Restart Hermes or start a new session after enabling.
 
 Plugin tools:
 
-- `localiser_regionalise_text`
+- `localiser_localise_text`
 - `localiser_detect_region`
 - `localiser_detect_locale`
 - `localiser_cultural_context`
@@ -252,7 +252,7 @@ MCP smoke:
 python3 core/scripts/localiser_mcp.py <<'EOF'
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05"}}
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
-{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"localiser_regionalise_text","arguments":{"text":"The sidewalk color was weird.","region":"au"}}}
+{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"localiser_localise_text","arguments":{"text":"The sidewalk color was weird.","region":"au"}}}
 EOF
 ```
 
@@ -319,7 +319,7 @@ python3 core/scripts/validate.py
 python3 core/scripts/build_db.py --regions au,us,uk,ca
 python3 core/scripts/build_skills.py --regions au,us,uk,ca
 python3 -m unittest discover -s tests -q
-python3 core/scripts/regionalise.py --region au --json "The sidewalk color was weird." | python3 -m json.tool >/dev/null
+python3 core/scripts/localise.py --region au --json "The sidewalk color was weird." | python3 -m json.tool >/dev/null
 ```
 
 ## Pitfalls

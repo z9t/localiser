@@ -17,7 +17,7 @@ def build_parser() -> argparse.ArgumentParser:
         description="Localise, detect, analyse, or learn English regional signals locally. No AI calls.",
     )
     p.add_argument("text", nargs="*", help="Text to process. If omitted, stdin is used.")
-    p.add_argument("-r", "--region", help="Target region for regionalise mode.")
+    p.add_argument("-r", "--region", help="Target region for localise mode.")
     p.add_argument("--detect", action="store_true", help="Detect likely source region instead of rewriting text.")
     p.add_argument("--detect-locale", action="store_true", help="Detect likely subnational/state/capital-city signals, currently strongest for AU.")
     p.add_argument("--ner", action="store_true", help="Extract named entities with optional Stanford Stanza NER.")
@@ -47,7 +47,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--explain", action="store_true", help="Include notes/changes; implied by --json, otherwise printed to stderr.")
     stanza_default = any(
         os.environ.get(name, "").lower() in {"1", "true", "yes", "on"}
-        for name in ("LOCALISER_USE_STANZA", "REGIONALISER_USE_STANZA")
+        for name in ("LOCALISER_USE_STANZA",)
     )
     stanza_group = p.add_mutually_exclusive_group()
     stanza_group.add_argument("--stanza", dest="use_stanza", action="store_true", default=stanza_default, help="Use optional Stanza NER as a protection layer for full localiser rewrites/analyse.")
@@ -114,7 +114,7 @@ def main(argv: list[str] | None = None) -> int:
     if not args.region:
         print("--region is required unless --detect, --detect-locale, --analyse, --ner, or --learn is used.", file=sys.stderr)
         return 2
-    result = engine.regionalise(
+    result = engine.localise(
         text,
         region=args.region,
         register=args.register,

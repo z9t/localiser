@@ -46,10 +46,10 @@ python3 core/scripts/build_db.py --regions au,us,uk,ca
 wordlist with `--url` or `--source`. This keeps the package lean: the baseline
 is pulled at install/build time rather than vendored into the repo.
 
-Regionalise a paragraph with no AI/model calls:
+Localise a paragraph with no AI/model calls:
 
 ```bash
-python3 core/scripts/regionalise.py --region au --register casual --density light \
+python3 core/scripts/localise.py --region au --register casual --density light \
   "I walked on the sidewalk to the gas station and liked the color."
 ```
 
@@ -57,16 +57,16 @@ The CLI accepts stdin and can write text or JSON:
 
 ```bash
 printf 'The sidewalk is near the gas station.' | \
-  python3 core/scripts/regionalise.py --region uk --json
+  python3 core/scripts/localise.py --region uk --json
 
-python3 core/scripts/regionalise.py --region ca --output out.txt "The candy was on the sidewalk."
+python3 core/scripts/localise.py --region ca --output out.txt "The candy was on the sidewalk."
 ```
 
 It can also run in detect mode, scoring the likely source region from spelling,
 vocabulary, lexicon, cultural, institutional, and geographic clues:
 
 ```bash
-python3 core/scripts/regionalise.py --detect --json \
+python3 core/scripts/localise.py --detect --json \
   "I topped up my Opal card before stopping at Woolies."
 ```
 
@@ -77,7 +77,7 @@ AU locale detect mode scores state/capital-city clues such as Opal/myki,
 parma/parmi, potato cake/potato scallop, AFL/NRL, and transport/admin labels:
 
 ```bash
-python3 core/scripts/regionalise.py --detect-locale --json \
+python3 core/scripts/localise.py --detect-locale --json \
   "I topped up my Opal before grabbing a potato scallop and watching the NRL."
 ```
 
@@ -86,9 +86,9 @@ top local codes, locally salient teams, current player seeds, and notable
 historic players. It can be queried alone or attached to a rewrite request:
 
 ```bash
-python3 core/scripts/regionalise.py --sports --region uk --locales London --json
+python3 core/scripts/localise.py --sports --region uk --locales London --json
 
-python3 core/scripts/regionalise.py --region au --sports --locales VIC/Melbourne \
+python3 core/scripts/localise.py --region au --sports --locales VIC/Melbourne \
   "I liked the color of the sidewalk."
 ```
 
@@ -105,11 +105,11 @@ These are useful for building a cultural context tree without stuffing slang int
 prose:
 
 ```bash
-python3 core/scripts/regionalise.py --context --region ca --locales Ontario/Toronto --json
+python3 core/scripts/localise.py --context --region ca --locales Ontario/Toronto --json
 
-python3 core/scripts/regionalise.py --culture --region au --generation gen-x --json
+python3 core/scripts/localise.py --culture --region au --generation gen-x --json
 
-python3 core/scripts/regionalise.py --region uk --context --locales London \
+python3 core/scripts/localise.py --region uk --context --locales London \
   "The sidewalk color was unusual."
 ```
 
@@ -122,7 +122,7 @@ Analyse/diff mode compares text against the installed baseline dictionary and
 known regional/custom evidence. This is useful for transcripts and YouTube text:
 
 ```bash
-python3 core/scripts/regionalise.py --analyse --json \
+python3 core/scripts/localise.py --analyse --json \
   "I went to Woolies after smoko with the Oka crew and grabbed a servo pie."
 ```
 
@@ -133,7 +133,7 @@ default:
 ```bash
 python3 -m pip install '.[ner]'
 python3 core/scripts/install_stanza_models.py --lang en
-python3 core/scripts/regionalise.py --ner --json \
+python3 core/scripts/localise.py --ner --json \
   "Sydney called Service NSW after Qantas moved the meeting."
 ```
 
@@ -144,7 +144,7 @@ Learn mode creates a reviewable custom lexicon scaffold from non-baseline terms,
 e.g. for an Oka bogan pack:
 
 ```bash
-python3 core/scripts/regionalise.py --learn "Oka bogan" --learn-out custom \
+python3 core/scripts/localise.py --learn "Oka bogan" --learn-out custom \
   "Paste examples or a transcript here"
 ```
 
@@ -163,9 +163,9 @@ CLI read that DB and do not call an AI service.
 Python API:
 
 ```python
-from core.localiser import analyse_text, cultural_context, detect_locale, detect_region, extract_named_entities, regionalise, sports_context
+from core.localiser import analyse_text, cultural_context, detect_locale, detect_region, extract_named_entities, localise, sports_context
 
-text = regionalise(
+text = localise(
     "I walked on the sidewalk to the gas station.",
     region="au",
     register="casual",
@@ -192,7 +192,7 @@ hermes plugins enable localiser
 
 The plugin exposes six tools in the `localiser` toolset:
 
-- `localiser_regionalise_text`
+- `localiser_localise_text`
 - `localiser_detect_region`
 - `localiser_detect_locale`
 - `localiser_cultural_context`
@@ -229,8 +229,8 @@ The deterministic rewrite path is deliberately conservative around context-sensi
 Stanza is optional and currently exposed for named-entity extraction (`--ner`) and as a preference-controlled full-localiser protection layer:
 
 ```bash
-python3 core/scripts/regionalise.py --region au --stanza --json "License Group liked the color."
-python3 core/scripts/regionalise.py --analyse --stanza --json "Qantas mentioned smoko."
+python3 core/scripts/localise.py --region au --stanza --json "License Group liked the color."
+python3 core/scripts/localise.py --analyse --stanza --json "Qantas mentioned smoko."
 export LOCALISER_USE_STANZA=1   # default on for this shell/profile
 ```
 

@@ -36,13 +36,13 @@ def _error(exc: Exception) -> str:
     return json.dumps({"error": str(exc)}, ensure_ascii=False)
 
 
-def regionalise_text(args: dict[str, Any], **_: Any) -> str:
+def localise_text(args: dict[str, Any], **_: Any) -> str:
     try:
         text = str(args.get("text", ""))
         region = str(args.get("region", "")).strip()
         if not text or not region:
             return _ok({"error": "Both text and region are required."})
-        result = _engine(args.get("db_path")).regionalise(
+        result = _engine(args.get("db_path")).localise(
             text,
             region=region,
             register=str(args.get("register", "neutral")),
@@ -137,7 +137,7 @@ def named_entities(args: dict[str, Any], **_: Any) -> str:
 
 
 HANDLERS = {
-    "localiser_regionalise_text": regionalise_text,
+    "localiser_localise_text": localise_text,
     "localiser_detect_region": detect_region,
     "localiser_detect_locale": detect_locale,
     "localiser_cultural_context": cultural_context,

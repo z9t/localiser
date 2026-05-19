@@ -14,7 +14,7 @@ If copied outside the repo, set `LOCALISER_ROOT=/Users/max/Code/localiser` in th
 
 Tools:
 
-- `localiser_regionalise_text`
+- `localiser_localise_text`
 - `localiser_detect_region`
 - `localiser_detect_locale`
 - `localiser_cultural_context`

@@ -11,7 +11,7 @@ from core.localiser.engine import Localiser
 from core.localiser import mcp_server, tool_api
 
 ROOT = Path(__file__).resolve().parents[1]
-CLI = ROOT / "core/scripts/regionalise.py"
+CLI = ROOT / "core/scripts/localise.py"
 MCP = ROOT / "core/scripts/localiser_mcp.py"
 
 
@@ -80,7 +80,7 @@ class LocaliserCliTests(unittest.TestCase):
         setattr(fake_stanza, "Pipeline", FakePipeline)
         sys.modules["stanza"] = fake_stanza
         try:
-            result = Localiser().regionalise("License Group liked the color.", region="au", density="none", use_stanza=True)
+            result = Localiser().localise("License Group liked the color.", region="au", density="none", use_stanza=True)
         finally:
             if previous is None:
                 sys.modules.pop("stanza", None)
@@ -258,7 +258,7 @@ class LocaliserCliTests(unittest.TestCase):
         self.assertEqual(result.entities[1]["text"], "Service NSW")
 
     def test_tool_api_regionalise_handler_returns_json(self):
-        payload = json.loads(tool_api.regionalise_text({"text": "The sidewalk color", "region": "au", "density": "none"}))
+        payload = json.loads(tool_api.localise_text({"text": "The sidewalk color", "region": "au", "density": "none"}))
         self.assertIn("footpath", payload["text"])
         self.assertIn("colour", payload["text"])
 
@@ -296,7 +296,7 @@ class LocaliserCliTests(unittest.TestCase):
             check=True,
         )
         self.assertIn("localiser", result.stdout)
-        self.assertIn("localiser_regionalise_text", result.stdout)
+        self.assertIn("localiser_localise_text", result.stdout)
 
     def test_rewrite_can_include_context_tree(self):
         result = self.run_cli(

@@ -13,7 +13,7 @@ REGIONS = {
 }
 
 LOCALISER_REGIONALISE_TEXT = {
-    "name": "localiser_regionalise_text",
+    "name": "localiser_localise_text",
     "description": "Rewrite English text toward a target regional variety using deterministic Localiser CSV/SQLite data. Use for AU/US/UK/CA spelling, vocabulary, and light register shifts; does not call an AI model.",
     "parameters": {
         "type": "object",

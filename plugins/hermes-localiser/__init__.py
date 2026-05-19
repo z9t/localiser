@@ -14,13 +14,12 @@ from pathlib import Path
 
 
 def _add_localiser_root() -> None:
-    env_root = os.getenv("LOCALISER_ROOT") or os.getenv("REGIONALISER_ROOT")
+    env_root = os.getenv("LOCALISER_ROOT")
     candidates = []
     if env_root:
         candidates.append(Path(env_root))
     for root_file in (
         Path(__file__).resolve().parent / "localiser_root.txt",
-        Path(__file__).resolve().parent / "regionaliser_root.txt",
     ):
         if root_file.exists():
             candidates.append(Path(root_file.read_text(encoding="utf-8").strip()).expanduser())

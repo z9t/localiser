@@ -87,9 +87,9 @@ Use this to find non-baseline words and known regional clues. The built-in basel
 ## Python API
 
 ```python
-from localiser_light import analyse, detect_region, regionalise
+from localiser_light import analyse, detect_region, localise
 
-regionalise("Text to regionalise", region="au")
+localise("Text to localise", region="au")
 detect_region("I topped up my Opal card before Woolies.")
 analyse("I went to Woolies after smoko.")
 ```

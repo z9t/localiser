@@ -2,7 +2,7 @@ name: localiser
 version: 0.1.0
 description: Localiser tools for AU/US/UK/CA English localisation, region detection, locality context, sports context, and optional Stanza NER.
 provides_tools:
-  - localiser_regionalise_text
+  - localiser_localise_text
   - localiser_detect_region
   - localiser_detect_locale
   - localiser_cultural_context
