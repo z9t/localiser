@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download Stanford Stanza models used by Regionaliser optional NER.
+"""Download Stanford Stanza models used by Localiser optional NER.
 
 Keeps Stanza optional: install with `pip install '.[ner]'` or `pip install stanza`.
 """
@@ -10,7 +10,7 @@ import sys
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description="Download Stanza models for Regionaliser NER.")
+    parser = argparse.ArgumentParser(description="Download Stanza models for Localiser NER.")
     parser.add_argument("--lang", default="en", help="Stanza language code. Default: en")
     parser.add_argument("--package", default=None, help="Optional Stanza package/model name.")
     parser.add_argument("--processors", default="tokenize,ner", help="Processors to download. Default: tokenize,ner")

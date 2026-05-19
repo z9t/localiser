@@ -1,8 +1,8 @@
 ---
 name: localiser
-description: Use when regionalising English across AU/US/UK/CA with the full Regionaliser dataset, CLI, MCP server, Hermes plugin, cultural-context banks, source-region detection, baseline analysis, and optional Stanza NER. Prefer for agents/profiles doing research, legal drafting, QA, or nuanced country/locality voice work.
+description: Use when regionalising English across AU/US/UK/CA with the full Localiser dataset, CLI, MCP server, Hermes plugin, cultural-context banks, source-region detection, baseline analysis, and optional Stanza NER. Prefer for agents/profiles doing research, legal drafting, QA, or nuanced country/locality voice work.
 version: 1.0.0
-author: Regionaliser
+author: Localiser
 license: MIT
 metadata:
   hermes:
@@ -14,7 +14,7 @@ metadata:
 
 ## Overview
 
-Localiser is the full Regionaliser skill. Use it when an agent needs nuanced English localisation rather than a few spelling substitutions.
+Localiser is the full Localiser skill. Use it when an agent needs nuanced English localisation rather than a few spelling substitutions.
 
 Canonical source of truth:
 
@@ -85,11 +85,11 @@ python3 core/scripts/regionalise.py --region au --stanza --json "License Group l
 python3 core/scripts/regionalise.py --region au --no-stanza --json "License Group liked the color."
 
 # profile/session default
-export REGIONALISER_USE_STANZA=1   # on
-unset REGIONALISER_USE_STANZA      # off
+export LOCALISER_USE_STANZA=1   # on
+unset LOCALISER_USE_STANZA      # off
 ```
 
-When enabled for rewrite/analyse, Stanza NER protects named entities from false positives. If Stanza or models are missing, Regionaliser keeps the deterministic output and adds an explanatory note instead of failing. Explicit `--ner` extraction still fails with setup guidance because it is specifically asking for Stanza output.
+When enabled for rewrite/analyse, Stanza NER protects named entities from false positives. If Stanza or models are missing, Localiser keeps the deterministic output and adds an explanatory note instead of failing. Explicit `--ner` extraction still fails with setup guidance because it is specifically asking for Stanza output.
 
 ## Core CLI
 
@@ -179,7 +179,7 @@ Important: context rows are evidence and flavour guides, not proof of residence,
 ## Python API
 
 ```python
-from core.regionaliser import (
+from core.localiser import (
     analyse_text,
     cultural_context,
     detect_locale,
@@ -221,7 +221,7 @@ Plugin tools:
 Run directly:
 
 ```bash
-python3 /Users/max/Code/localiser/core/scripts/regionaliser_mcp.py
+python3 /Users/max/Code/localiser/core/scripts/localiser_mcp.py
 ```
 
 Hermes MCP config:
@@ -230,7 +230,7 @@ Hermes MCP config:
 mcp_servers:
   localiser:
     command: "python3"
-    args: ["/Users/max/Code/localiser/core/scripts/regionaliser_mcp.py"]
+    args: ["/Users/max/Code/localiser/core/scripts/localiser_mcp.py"]
 ```
 
 Claude/Codex-style MCP client config shape:
@@ -240,7 +240,7 @@ Claude/Codex-style MCP client config shape:
   "mcpServers": {
     "localiser": {
       "command": "python3",
-      "args": ["/Users/max/Code/localiser/core/scripts/regionaliser_mcp.py"]
+      "args": ["/Users/max/Code/localiser/core/scripts/localiser_mcp.py"]
     }
   }
 }
@@ -249,7 +249,7 @@ Claude/Codex-style MCP client config shape:
 MCP smoke:
 
 ```bash
-python3 core/scripts/regionaliser_mcp.py <<'EOF'
+python3 core/scripts/localiser_mcp.py <<'EOF'
 {"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05"}}
 {"jsonrpc":"2.0","id":2,"method":"tools/list","params":{}}
 {"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"localiser_regionalise_text","arguments":{"text":"The sidewalk color was weird.","region":"au"}}}
@@ -302,11 +302,11 @@ regions/<code>/data/media_reference_ecology.csv
 Shared code:
 
 ```text
-core/regionaliser/engine.py
-core/regionaliser/cli.py
-core/regionaliser/tool_api.py
-core/regionaliser/tool_schemas.py
-core/regionaliser/mcp_server.py
+core/localiser/engine.py
+core/localiser/cli.py
+core/localiser/tool_api.py
+core/localiser/tool_schemas.py
+core/localiser/mcp_server.py
 ```
 
 ## Verification
@@ -314,7 +314,7 @@ core/regionaliser/mcp_server.py
 Before relying on this skill after edits:
 
 ```bash
-python3 -m py_compile core/regionaliser/*.py core/scripts/*.py
+python3 -m py_compile core/localiser/*.py core/scripts/*.py
 python3 core/scripts/validate.py
 python3 core/scripts/build_db.py --regions au,us,uk,ca
 python3 core/scripts/build_skills.py --regions au,us,uk,ca

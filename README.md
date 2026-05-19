@@ -1,4 +1,4 @@
-# Regionaliser
+# Localiser
 
 Region-specific English simulation packs for AI agents.
 
@@ -6,7 +6,7 @@ Goal: install only the English region packs you need — AU, US, UK, Canada now;
 more regions later — without duplicating central scripts or letting capability
 split across copies.
 
-Regionaliser is not an agent. It is the information substrate an agent needs to
+Localiser is not an agent. It is the information substrate an agent needs to
 sound local: spelling, vocabulary, register, generation, regional differences,
 class/sociolect notes, cultural references, humour, quotes, taboo traps, and
 example transformations.
@@ -14,7 +14,7 @@ example transformations.
 ## Design
 
 ```
-regionaliser/
+localiser/
 ├── core/
 │   ├── scripts/              # shared installers/builders/validators
 │   └── templates/            # shared skill templates
@@ -157,13 +157,13 @@ terms.
 
 Options include `--register`, `--generation`, `--subregion`, `--class`,
 `--setting`, and `--density`. The basic version is deterministic and local:
-CSV data is compiled into `core/data/regionaliser.sqlite`; the Python API and
+CSV data is compiled into `core/data/localiser.sqlite`; the Python API and
 CLI read that DB and do not call an AI service.
 
 Python API:
 
 ```python
-from core.regionaliser import analyse_text, cultural_context, detect_locale, detect_region, extract_named_entities, regionalise, sports_context
+from core.localiser import analyse_text, cultural_context, detect_locale, detect_region, extract_named_entities, regionalise, sports_context
 
 text = regionalise(
     "I walked on the sidewalk to the gas station.",
@@ -203,7 +203,7 @@ Lightweight stdio MCP server for Claude Code, Codex, Hermes, and other MCP
 clients:
 
 ```bash
-python3 core/scripts/regionaliser_mcp.py
+python3 core/scripts/localiser_mcp.py
 ```
 
 Hermes MCP config example:
@@ -212,7 +212,7 @@ Hermes MCP config example:
 mcp_servers:
   localiser:
     command: "python3"
-    args: ["/Users/max/Code/localiser/core/scripts/regionaliser_mcp.py"]
+    args: ["/Users/max/Code/localiser/core/scripts/localiser_mcp.py"]
 ```
 
 Claude/Codex-style clients should point their stdio MCP command to the same
@@ -231,7 +231,7 @@ Stanza is optional and currently exposed for named-entity extraction (`--ner`) a
 ```bash
 python3 core/scripts/regionalise.py --region au --stanza --json "License Group liked the color."
 python3 core/scripts/regionalise.py --analyse --stanza --json "Qantas mentioned smoko."
-export REGIONALISER_USE_STANZA=1   # default on for this shell/profile
+export LOCALISER_USE_STANZA=1   # default on for this shell/profile
 ```
 
 Use `--no-stanza` to turn the preference off for a command. When Stanza protection is enabled, named-entity spans are protected from rewrite/diff false positives; if Stanza/models are unavailable, the deterministic output still completes with a setup note. Keep the default path deterministic and conservative; Stanza should increase confidence/protection, not force uncertain rewrites.
@@ -256,13 +256,13 @@ The installer puts `localiser-light` into every Hermes profile plus Claude/Codex
 Dry run:
 
 ```bash
-python3 core/scripts/install_regions.py --regions au --target ~/.hermes/skills/regionaliser --dry-run
+python3 core/scripts/install_regions.py --regions au --target ~/.hermes/skills/localiser --dry-run
 ```
 
 Install selected regions:
 
 ```bash
-python3 core/scripts/install_regions.py --regions au,ca --target ~/.hermes/skills/regionaliser
+python3 core/scripts/install_regions.py --regions au,ca --target ~/.hermes/skills/localiser
 ```
 
 Build generated skills inside this repo for review:
@@ -306,6 +306,6 @@ Generated output:
 
 ## Scope
 
-Regionaliser focuses on lived language and cultural simulation, not specialist
+Localiser focuses on lived language and cultural simulation, not specialist
 legal vocabulary. Specialist packs can be added later as separate domains, e.g.
 `domains/legal/au`, using the same core scripts.

@@ -1,1 +1,1 @@
-# Namespace package marker for repo-local Regionaliser modules.
+# Namespace package marker for repo-local Localiser modules.

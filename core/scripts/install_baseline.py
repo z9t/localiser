@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install a baseline English wordlist for Regionaliser diff/analyse mode.
+"""Install a baseline English wordlist for Localiser diff/analyse mode.
 
 Default order:
 1. Copy the host system dictionary if available (/usr/share/dict/words).

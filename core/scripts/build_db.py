@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a local SQLite database from Regionaliser region CSV files."""
+"""Build a local SQLite database from Localiser region CSV files."""
 from __future__ import annotations
 
 import argparse
@@ -9,7 +9,7 @@ import sqlite3
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DB = ROOT / "core/data/regionaliser.sqlite"
+DEFAULT_DB = ROOT / "core/data/localiser.sqlite"
 DEFAULT_BASELINE = ROOT / "core/data/baseline_english_words.txt"
 
 

@@ -7,15 +7,15 @@ import tempfile
 import types
 import unittest
 
-from core.regionaliser.engine import Regionaliser
-from core.regionaliser import mcp_server, tool_api
+from core.localiser.engine import Localiser
+from core.localiser import mcp_server, tool_api
 
 ROOT = Path(__file__).resolve().parents[1]
 CLI = ROOT / "core/scripts/regionalise.py"
-MCP = ROOT / "core/scripts/regionaliser_mcp.py"
+MCP = ROOT / "core/scripts/localiser_mcp.py"
 
 
-class RegionaliserCliTests(unittest.TestCase):
+class LocaliserCliTests(unittest.TestCase):
     def run_cli(self, *args, input_text=None):
         return subprocess.run(
             [sys.executable, str(CLI), *args],
@@ -80,7 +80,7 @@ class RegionaliserCliTests(unittest.TestCase):
         setattr(fake_stanza, "Pipeline", FakePipeline)
         sys.modules["stanza"] = fake_stanza
         try:
-            result = Regionaliser().regionalise("License Group liked the color.", region="au", density="none", use_stanza=True)
+            result = Localiser().regionalise("License Group liked the color.", region="au", density="none", use_stanza=True)
         finally:
             if previous is None:
                 sys.modules.pop("stanza", None)
@@ -113,7 +113,7 @@ class RegionaliserCliTests(unittest.TestCase):
         setattr(fake_stanza, "Pipeline", FakePipeline)
         sys.modules["stanza"] = fake_stanza
         try:
-            result = Regionaliser().analyse("Qantas mentioned smoko.", use_stanza=True)
+            result = Localiser().analyse("Qantas mentioned smoko.", use_stanza=True)
         finally:
             if previous is None:
                 sys.modules.pop("stanza", None)
@@ -248,7 +248,7 @@ class RegionaliserCliTests(unittest.TestCase):
         setattr(fake_stanza, "Pipeline", FakePipeline)
         sys.modules["stanza"] = fake_stanza
         try:
-            result = Regionaliser().named_entities("Sydney called Service NSW.")
+            result = Localiser().named_entities("Sydney called Service NSW.")
         finally:
             if previous is None:
                 sys.modules.pop("stanza", None)
@@ -295,7 +295,7 @@ class RegionaliserCliTests(unittest.TestCase):
             stderr=subprocess.PIPE,
             check=True,
         )
-        self.assertIn("regionaliser-localiser", result.stdout)
+        self.assertIn("localiser", result.stdout)
         self.assertIn("localiser_regionalise_text", result.stdout)
 
     def test_rewrite_can_include_context_tree(self):

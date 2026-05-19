@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install selected Regionaliser skills to a target skills directory."""
+"""Install selected Localiser skills to a target skills directory."""
 from __future__ import annotations
 import argparse, shutil, subprocess, sys
 from pathlib import Path

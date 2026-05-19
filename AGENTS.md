@@ -1,6 +1,6 @@
-# Regionaliser Agent Notes
+# Localiser Agent Notes
 
-Regionaliser is data-first.
+Localiser is data-first.
 
 Rules:
 
@@ -17,5 +17,5 @@ Verification before reporting done:
 ```bash
 python3 core/scripts/validate.py
 python3 core/scripts/build_skills.py --regions au,us,uk,ca
-python3 core/scripts/install_regions.py --regions au --target /tmp/regionaliser-test --dry-run
+python3 core/scripts/install_regions.py --regions au --target /tmp/localiser-test --dry-run
 ```

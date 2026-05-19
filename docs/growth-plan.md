@@ -1,6 +1,6 @@
 # Growth Plan
 
-Regionaliser should grow as simulation packs, not monolithic prose.
+Localiser should grow as simulation packs, not monolithic prose.
 
 ## Next data expansions
 
@@ -48,8 +48,8 @@ domains/
 Installer shape to aim for:
 
 ```bash
-python3 core/scripts/install_regions.py --regions au,ca --target ~/.hermes/skills/regionaliser
-python3 core/scripts/install_domain.py --domain legal --regions au --target ~/.hermes/skills/regionaliser
+python3 core/scripts/install_regions.py --regions au,ca --target ~/.hermes/skills/localiser
+python3 core/scripts/install_domain.py --domain legal --regions au --target ~/.hermes/skills/localiser
 ```
 
 ## Capability sync principle

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate Regionaliser manifests and CSV files."""
+"""Validate Localiser manifests and CSV files."""
 from __future__ import annotations
 import csv, json, re, sys
 from pathlib import Path

@@ -1,7 +1,7 @@
 [project]
-name = "regionaliser"
+name = "localiser"
 version = "0.1.0"
-description = "Local deterministic English regionalisation CLI/API backed by Regionaliser CSV/SQLite data."
+description = "Local deterministic English regionalisation CLI/API backed by Localiser CSV/SQLite data."
 requires-python = ">=3.10"
 dependencies = []
 
@@ -9,8 +9,12 @@ dependencies = []
 ner = ["stanza>=1.8"]
 
 [project.scripts]
-regionalise = "core.regionaliser.cli:main"
-regionaliser-mcp = "core.regionaliser.mcp_server:main"
+localise = "core.localiser.cli:main"
+regionalise = "core.localiser.cli:main"
+localiser-mcp = "core.localiser.mcp_server:main"
 
 [tool.setuptools]
-packages = ["core", "core.regionaliser"]
+packages = ["core", "core.localiser"]
+
+[tool.setuptools.package-data]
+core = ["data/*.sqlite"]

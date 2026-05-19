@@ -1,4 +1,4 @@
-# Regionaliser Architecture
+# Localiser Architecture
 
 ## Principle
 

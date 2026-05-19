@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Regionaliser region skills from shared template + regional CSV data."""
+"""Build Localiser region skills from shared template + regional CSV data."""
 from __future__ import annotations
 import argparse, csv, json
 from pathlib import Path

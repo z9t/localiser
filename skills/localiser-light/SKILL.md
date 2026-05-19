@@ -2,7 +2,7 @@
 name: localiser-light
 description: Use for quick dependency-free AU/US/UK/CA English localisation edits with the standalone localiser-light CLI. Prefer for compact default profiles and general agents that only need basic rewrite, detect, and analyse.
 version: 0.1.0
-author: Regionaliser
+author: Localiser
 license: MIT
 metadata:
   hermes:
@@ -40,7 +40,7 @@ Supported regions:
 au, us, uk, ca
 ```
 
-Use the full `localiser`/Regionaliser repo when you need cultural/context datasets, locality/sports context, custom lexicons, Hermes plugin/MCP, or optional Stanza NER protection.
+Use the full `localiser`/Localiser repo when you need cultural/context datasets, locality/sports context, custom lexicons, Hermes plugin/MCP, or optional Stanza NER protection.
 
 ## Quick Rules
 

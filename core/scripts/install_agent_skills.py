@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Install Regionaliser localiser skills into agent/Hermes skill directories."""
+"""Install Localiser localiser skills into agent/Hermes skill directories."""
 from __future__ import annotations
 
 import argparse

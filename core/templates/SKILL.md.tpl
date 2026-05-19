@@ -27,7 +27,7 @@ Before writing, choose:
 
 ## Local CLI / API
 
-For deterministic baseline edits, use the repo-local Regionaliser CLI/API rather
+For deterministic baseline edits, use the repo-local Localiser CLI/API rather
 than improvising from memory. The basic version is local, script/SQLite-backed,
 and makes no AI calls.
 
@@ -70,7 +70,7 @@ python3 core/scripts/regionalise.py --learn "Oka bogan" --learn-out custom "Exam
 Python API used by the CLI:
 
 ```python
-from core.regionaliser import analyse_text, detect_region, regionalise
+from core.localiser import analyse_text, detect_region, regionalise
 regionalise("Text to regionalise", region="{{region_code}}", register="casual", density="light")
 ```
 
