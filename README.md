@@ -236,6 +236,36 @@ export LOCALISER_USE_STANZA=1   # default on for this shell/profile
 
 Use `--no-stanza` to turn the preference off for a command. When Stanza protection is enabled, named-entity spans are protected from rewrite/diff false positives; if Stanza/models are unavailable, the deterministic output still completes with a setup note. Keep the default path deterministic and conservative; Stanza should increase confidence/protection, not force uncertain rewrites.
 
+## Layered profiles and corpus mining
+
+Use layered profiles when you want a country, locality, group, show, movie, workplace, or YouTube/subtitle corpus to sit on top of an existing region/profile.
+
+Create a country-root profile:
+
+```bash
+python3 core/scripts/localise.py --profile-create "Western Sydney" --parent-region au
+```
+
+Mine candidates from subtitles/transcripts/text:
+
+```bash
+python3 core/scripts/localise.py \
+  --profile-mine "Remote Oka Crew" \
+  --parent-region au \
+  --source ./episode1.srt \
+  --source "https://www.youtube.com/watch?v=VIDEO_ID" \
+  --min-count 3
+```
+
+Then rebuild so the profile is selectable:
+
+```bash
+python3 core/scripts/build_db.py --regions au,us,uk,ca --profiles-dir profiles
+python3 core/scripts/localise.py --detect --regions remote-oka-crew --json "ridgydidge smoko"
+```
+
+See `docs/layered-profiles.md`. Mined rows are candidates only: remove names, typos, ASR artefacts, and one-off jokes before trusting them.
+
 ## Install localiser skills
 
 Canonical localiser skills live under this repo's `skills/` directory:

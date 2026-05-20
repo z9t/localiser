@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 from .engine import DEFAULT_DB, Localiser
+from .profiles import create_profile, mine_profile_from_sources, mine_profile_from_text
 
 
 def _engine(db_path: str | None = None) -> Localiser:
@@ -136,6 +137,59 @@ def named_entities(args: dict[str, Any], **_: Any) -> str:
         return _error(exc)
 
 
+def create_layered_profile(args: dict[str, Any], **_: Any) -> str:
+    try:
+        name = str(args.get("name", "")).strip()
+        if not name:
+            return _ok({"error": "name is required."})
+        result = create_profile(
+            name,
+            parent_region=args.get("parent_region"),
+            parent_profile=args.get("parent_profile"),
+            root=args.get("profile_root", "profiles"),
+            description=args.get("description"),
+            overwrite=bool(args.get("overwrite", False)),
+        )
+        return _ok(result.as_dict())
+    except Exception as exc:
+        return _error(exc)
+
+
+def mine_layered_profile(args: dict[str, Any], **_: Any) -> str:
+    try:
+        name = str(args.get("name", "")).strip()
+        if not name:
+            return _ok({"error": "name is required."})
+        sources = _regions(args.get("sources")) or []
+        if sources:
+            result = mine_profile_from_sources(
+                name,
+                sources,
+                parent_region=args.get("parent_region"),
+                parent_profile=args.get("parent_profile"),
+                root=args.get("profile_root", "profiles"),
+                min_count=int(args.get("min_count", 2)),
+                overwrite=bool(args.get("overwrite", False)),
+            )
+        else:
+            text = str(args.get("text", ""))
+            if not text:
+                return _ok({"error": "text or sources is required."})
+            result = mine_profile_from_text(
+                name,
+                text,
+                parent_region=args.get("parent_region"),
+                parent_profile=args.get("parent_profile"),
+                root=args.get("profile_root", "profiles"),
+                min_count=int(args.get("min_count", 2)),
+                overwrite=bool(args.get("overwrite", False)),
+                db_path=args.get("db_path"),
+            )
+        return _ok(result.as_dict())
+    except Exception as exc:
+        return _error(exc)
+
+
 HANDLERS = {
     "localiser_localise_text": localise_text,
     "localiser_detect_region": detect_region,
@@ -143,4 +197,6 @@ HANDLERS = {
     "localiser_cultural_context": cultural_context,
     "localiser_sports_context": sports_context,
     "localiser_named_entities": named_entities,
+    "localiser_create_layered_profile": create_layered_profile,
+    "localiser_mine_layered_profile": mine_layered_profile,
 }

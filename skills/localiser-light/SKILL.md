@@ -40,7 +40,7 @@ Supported regions:
 au, us, uk, ca
 ```
 
-Use the full `localiser`/Localiser repo when you need cultural/context datasets, locality/sports context, custom lexicons, Hermes plugin/MCP, or optional Stanza NER protection.
+Use the full `localiser`/Localiser repo when you need cultural/context datasets, locality/sports context, layered profile creation, transcript/subtitle corpus mining, custom lexicons, Hermes plugin/MCP, or optional Stanza NER protection.
 
 ## Quick Rules
 

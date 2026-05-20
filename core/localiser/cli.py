@@ -23,6 +23,13 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--ner", action="store_true", help="Extract named entities with optional Stanford Stanza NER.")
     p.add_argument("--analyse", "--analyze", action="store_true", help="Diff text against baseline English and known regional clues.")
     p.add_argument("--learn", metavar="NAME", help="Create a custom lexicon scaffold from non-baseline terms, e.g. 'Oka bogan'.")
+    p.add_argument("--profile-create", metavar="NAME", help="Create an empty layered profile scaffold.")
+    p.add_argument("--profile-mine", metavar="NAME", help="Create/update a layered profile by mining supplied text/files/YouTube URLs.")
+    p.add_argument("--profile-root", default="profiles", help="Layered profile directory. Default: profiles/")
+    p.add_argument("--parent-region", help="Parent country/region code for a root-level profile, e.g. au.")
+    p.add_argument("--parent-profile", help="Parent profile slug/name for a narrower layer.")
+    p.add_argument("--source", action="append", default=[], help="Corpus source for --profile-mine: subtitle/text file or YouTube URL. Repeatable.")
+    p.add_argument("--overwrite", action="store_true", help="Replace an existing generated profile scaffold.")
     p.add_argument("--sports", action="store_true", help="Include/query locality sports context: top codes, teams, current players, historic players.")
     p.add_argument("--context", action="store_true", help="Include/query daily-life institutions and media/reference ecology for a region/locality.")
     p.add_argument("--culture", action="store_true", help="Include/query generational cultural quote/reference context for a country/locality.")
@@ -58,12 +65,28 @@ def build_parser() -> argparse.ArgumentParser:
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     text = " ".join(args.text).strip() if args.text else sys.stdin.read()
-    if not text.strip() and not (args.sports or args.context or args.culture):
+    if not text.strip() and not (args.sports or args.context or args.culture or args.profile_create or args.profile_mine):
         print("No input text supplied. Pass text args or pipe stdin.", file=sys.stderr)
         return 2
     engine = Localiser(args.db)
     regions = [r.strip() for r in args.regions.split(",") if r.strip()] if args.regions else None
     locales = [r.strip() for r in args.locales.split(",") if r.strip()] if args.locales else None
+
+    if args.profile_create or args.profile_mine:
+        from .profiles import create_profile, mine_profile_from_sources, mine_profile_from_text
+        name = args.profile_create or args.profile_mine
+        try:
+            if args.profile_create:
+                result = create_profile(name, parent_region=args.parent_region, parent_profile=args.parent_profile, root=args.profile_root, overwrite=args.overwrite)
+            elif args.source:
+                result = mine_profile_from_sources(name, args.source, parent_region=args.parent_region, parent_profile=args.parent_profile, root=args.profile_root, min_count=args.min_count, overwrite=args.overwrite)
+            else:
+                result = mine_profile_from_text(name, text, parent_region=args.parent_region, parent_profile=args.parent_profile, root=args.profile_root, min_count=args.min_count, overwrite=args.overwrite, db_path=args.db)
+        except Exception as exc:
+            print(str(exc), file=sys.stderr)
+            return 1
+        rendered = json.dumps(result.as_dict(), ensure_ascii=False, indent=2) if args.json else render_profile_text(result)
+        return emit(rendered, args.output)
 
     if (args.sports or args.context or args.culture) and not text.strip():
         if not args.region:
@@ -245,6 +268,20 @@ def render_learn_text(result) -> str:
     lines.append(f"candidates={len(result.candidates)}")
     for c in result.candidates[:40]:
         lines.append(f"- {c['term']} x{c['count']} {c.get('reason', '')}")
+    lines.extend(f"note: {n}" for n in result.notes)
+    return "\n".join(lines)
+
+
+def render_profile_text(result) -> str:
+    lines = [f"profile={result.slug} name={result.name} depth={result.layer_depth}"]
+    if result.parent_region:
+        lines.append(f"parent_region={result.parent_region}")
+    if result.parent_profile:
+        lines.append(f"parent_profile={result.parent_profile}")
+    lines.append(f"root={result.root}")
+    lines.append(f"files={len(result.files)} candidates={len(result.candidates)}")
+    for c in result.candidates[:40]:
+        lines.append(f"- {c.get('term')} x{c.get('count')} {c.get('reason', '')}")
     lines.extend(f"note: {n}" for n in result.notes)
     return "\n".join(lines)
 

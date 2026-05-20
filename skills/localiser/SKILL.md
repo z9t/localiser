@@ -19,7 +19,7 @@ Localiser is the full Localiser skill. Use it when an agent needs nuanced Englis
 Canonical source of truth:
 
 ```text
-/Users/max/Code/localiser
+/Users/max/Code/regionaliser
 ```
 
 If this skill was installed from GitHub, clone/update the repo and use the same commands from the checkout root.
@@ -64,7 +64,7 @@ Use `localiser-light` instead when:
 From the repo root:
 
 ```bash
-cd /Users/max/Code/localiser
+cd /Users/max/Code/regionaliser
 python3 core/scripts/install_baseline.py
 python3 core/scripts/build_db.py --regions au,us,uk,ca
 python3 core/scripts/validate.py
@@ -176,6 +176,49 @@ python3 core/scripts/localise.py --culture --region au --generation gen-x --json
 
 Important: context rows are evidence and flavour guides, not proof of residence, class, politics, ethnicity, or allegiance.
 
+## Layered Profiles and Corpus Mining
+
+Use profiles when the user wants to add a new type of person/group/locality/corpus as a layer rather than editing the country root data directly.
+
+Create an empty country-root profile:
+
+```bash
+python3 core/scripts/localise.py --profile-create "Western Sydney" --parent-region au
+```
+
+Mine a profile from subtitles, transcripts, plain text, or YouTube URLs:
+
+```bash
+python3 core/scripts/localise.py \
+  --profile-mine "Remote Oka Crew" \
+  --parent-region au \
+  --source ./episode1.srt \
+  --source "https://www.youtube.com/watch?v=VIDEO_ID" \
+  --min-count 3
+```
+
+Create a narrower layer on top of an existing profile:
+
+```bash
+python3 core/scripts/localise.py --profile-create "Remote Oka Crew Teens" --parent-profile remote-oka-crew
+```
+
+Rebuild to make profiles selectable:
+
+```bash
+python3 core/scripts/build_db.py --regions au,us,uk,ca --profiles-dir profiles
+python3 core/scripts/localise.py --detect --regions remote-oka-crew --json "ridgydidge smoko"
+```
+
+Rules:
+
+- `parent_region` means this profile sits on a country/root layer.
+- `parent_profile` means this is narrower and inherits from a reviewed parent profile.
+- Mined rows are candidates only. Remove names, brands, typos, ASR/OCR artefacts, and one-off jokes.
+- Narrow profiles do not automatically generalise upward.
+
+See `docs/layered-profiles.md`.
+
 ## Python API
 
 ```python
@@ -221,7 +264,7 @@ Plugin tools:
 Run directly:
 
 ```bash
-python3 /Users/max/Code/localiser/core/scripts/localiser_mcp.py
+python3 /Users/max/Code/regionaliser/core/scripts/localiser_mcp.py
 ```
 
 Hermes MCP config:
@@ -230,7 +273,7 @@ Hermes MCP config:
 mcp_servers:
   localiser:
     command: "python3"
-    args: ["/Users/max/Code/localiser/core/scripts/localiser_mcp.py"]
+    args: ["/Users/max/Code/regionaliser/core/scripts/localiser_mcp.py"]
 ```
 
 Claude/Codex-style MCP client config shape:
@@ -240,7 +283,7 @@ Claude/Codex-style MCP client config shape:
   "mcpServers": {
     "localiser": {
       "command": "python3",
-      "args": ["/Users/max/Code/localiser/core/scripts/localiser_mcp.py"]
+      "args": ["/Users/max/Code/regionaliser/core/scripts/localiser_mcp.py"]
     }
   }
 }
@@ -324,7 +367,7 @@ python3 core/scripts/localise.py --region au --json "The sidewalk color was weir
 
 ## Pitfalls
 
-- Do not copy generated regional skills into legal/project folders. Keep the canonical source in `/Users/max/Code/localiser` and install from there.
+- Do not copy generated regional skills into legal/project folders. Keep the canonical source in `/Users/max/Code/regionaliser` and install from there.
 - Do not make `--detect` overconfident. Mention confidence and evidence.
 - Do not treat named entities as regional slang.
 - Do not silently use optional Stanza NER unless it is installed and models are downloaded.

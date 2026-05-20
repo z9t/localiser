@@ -18,6 +18,8 @@ from .engine import (
     sports_context,
 )
 
+from .profiles import ProfileResult, create_profile, mine_profile_from_sources, mine_profile_from_text
+
 __all__ = [
     "AnalyseResult",
     "CulturalContextResult",
@@ -28,6 +30,7 @@ __all__ = [
     "Localiser",
     "LocaliseOptions",
     "SportsLocalityResult",
+    "ProfileResult",
     "analyse_text",
     "cultural_context",
     "detect_locale",
@@ -35,4 +38,7 @@ __all__ = [
     "extract_named_entities",
     "localise",
     "sports_context",
+    "create_profile",
+    "mine_profile_from_sources",
+    "mine_profile_from_text",
 ]

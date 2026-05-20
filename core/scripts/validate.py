@@ -13,6 +13,11 @@ EXPECTED_COLUMNS = {
     'media_reference_ecology': ['locale','category','reference','what_it_signals','typical_phrase','generation_or_register','strength','caution','sources'],
     'cultural_quote_references': ['locale','generation','reference_type','reference','era','quote_fragments','how_used','avoid_when','caution','sources'],
 }
+EXPECTED_PROFILE_COLUMNS = {
+    'lexicon': ['term','category','register','region_or_group','meaning','usage_notes','avoid_when','source_count','sources'],
+    'detection_markers': ['marker','type','weight','notes','sources'],
+    'phrases': ['phrase','category','meaning','usage_notes','avoid_when','source_count','sources'],
+}
 
 def fail(msg):
     print('FAIL:', msg)
@@ -55,6 +60,32 @@ def main():
                 for idx, row in enumerate(rows[1:], start=2):
                     if len(row) != width:
                         status |= fail(f'{region.name}: {ds}.csv row {idx} has {len(row)} columns, expected {width}')
+    profiles = ROOT/'profiles'
+    if profiles.exists():
+        for profile in sorted(profiles.iterdir()):
+            if not profile.is_dir():
+                continue
+            mp = profile/'manifest.json'
+            if not mp.exists():
+                status |= fail(f'profile {profile.name}: missing manifest.json'); continue
+            m = json.loads(mp.read_text(encoding='utf-8'))
+            if not m.get('profile_code'):
+                status |= fail(f'profile {profile.name}: missing profile_code')
+            if bool(m.get('parent_region')) == bool(m.get('parent_profile')):
+                status |= fail(f'profile {profile.name}: set exactly one parent_region or parent_profile')
+            for ds, expected in EXPECTED_PROFILE_COLUMNS.items():
+                p = profile/'data'/f'{ds}.csv'
+                if not p.exists():
+                    status |= fail(f'profile {profile.name}: missing {ds}.csv'); continue
+                with p.open(newline='', encoding='utf-8') as f:
+                    rows = list(csv.reader(f))
+                if not rows or rows[0] != expected:
+                    status |= fail(f'profile {profile.name}: {ds}.csv columns {rows[0] if rows else []} != {expected}')
+                if rows:
+                    width = len(rows[0])
+                    for idx, row in enumerate(rows[1:], start=2):
+                        if len(row) != width:
+                            status |= fail(f'profile {profile.name}: {ds}.csv row {idx} has {len(row)} columns, expected {width}')
     if status == 0:
         print('ok')
     return status

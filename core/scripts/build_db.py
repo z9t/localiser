@@ -13,7 +13,7 @@ DEFAULT_DB = ROOT / "core/data/localiser.sqlite"
 DEFAULT_BASELINE = ROOT / "core/data/baseline_english_words.txt"
 
 
-def build_db(regions: list[str], out: Path = DEFAULT_DB, baseline: Path = DEFAULT_BASELINE, custom_root: Path | None = None) -> Path:
+def build_db(regions: list[str], out: Path = DEFAULT_DB, baseline: Path = DEFAULT_BASELINE, custom_root: Path | None = None, profiles_root: Path | None = None) -> Path:
     out.parent.mkdir(parents=True, exist_ok=True)
     if out.exists():
         out.unlink()
@@ -21,6 +21,7 @@ def build_db(regions: list[str], out: Path = DEFAULT_DB, baseline: Path = DEFAUL
     con.execute("create table entries (region text not null, dataset text not null, rowid_in_csv integer not null, data text not null)")
     con.execute("create index idx_entries_region_dataset on entries(region, dataset)")
     con.execute("create table manifests (region text primary key, data text not null)")
+    con.execute("create table profile_layers (profile text primary key, parent_region text, parent_profile text, layer_depth integer not null default 0, data text not null)")
     con.execute("create table baseline_words (word text primary key)")
     con.execute("create table baseline_meta (key text primary key, value text not null)")
     if baseline.exists():
@@ -49,6 +50,22 @@ def build_db(regions: list[str], out: Path = DEFAULT_DB, baseline: Path = DEFAUL
         con.execute("insert or replace into manifests(region, data) values (?, ?)", (code, json.dumps(manifest, ensure_ascii=False)))
         for csv_path in sorted((custom_dir / "data").glob("*.csv")):
             load_csv(con, code, csv_path)
+    profile_base = profiles_root or (ROOT / "profiles")
+    profile_dirs = []
+    if profile_base.exists():
+        for profile_dir in sorted(profile_base.glob("*")):
+            if profile_dir.is_dir() and (profile_dir / "manifest.json").exists():
+                manifest = json.loads((profile_dir / "manifest.json").read_text(encoding="utf-8"))
+                profile_dirs.append((int(manifest.get("layer_depth") or 0), profile_dir, manifest))
+    for _, profile_dir, manifest in sorted(profile_dirs, key=lambda item: (item[0], item[1].name)):
+        code = manifest.get("profile_code") or manifest.get("region_code") or profile_dir.name
+        con.execute("insert or replace into manifests(region, data) values (?, ?)", (code, json.dumps(manifest, ensure_ascii=False)))
+        con.execute(
+            "insert or replace into profile_layers(profile, parent_region, parent_profile, layer_depth, data) values (?, ?, ?, ?, ?)",
+            (code, manifest.get("parent_region"), manifest.get("parent_profile"), int(manifest.get("layer_depth") or 0), json.dumps(manifest, ensure_ascii=False)),
+        )
+        for csv_path in sorted((profile_dir / "data").glob("*.csv")):
+            load_csv(con, code, csv_path)
     con.commit()
     con.close()
     return out
@@ -69,9 +86,10 @@ def main():
     ap.add_argument("--out", default=str(DEFAULT_DB), help="output SQLite path")
     ap.add_argument("--baseline", default=str(DEFAULT_BASELINE), help="baseline English wordlist path")
     ap.add_argument("--custom-dir", default=str(ROOT / "custom"), help="directory containing custom learned lexicon packs")
+    ap.add_argument("--profiles-dir", default=str(ROOT / "profiles"), help="directory containing layered localiser profiles")
     args = ap.parse_args()
     regions = [r.strip() for r in args.regions.split(",") if r.strip()]
-    out = build_db(regions, Path(args.out), Path(args.baseline), Path(args.custom_dir))
+    out = build_db(regions, Path(args.out), Path(args.baseline), Path(args.custom_dir), Path(args.profiles_dir))
     print(out)
 
 

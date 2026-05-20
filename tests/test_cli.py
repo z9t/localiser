@@ -327,6 +327,35 @@ class LocaliserCliTests(unittest.TestCase):
             self.assertTrue((Path(td) / "oka-bogan" / "data" / "lexicon.csv").exists())
             self.assertTrue((Path(td) / "oka-bogan" / "data" / "detection_markers.csv").exists())
 
+    def test_profile_create_writes_layered_scaffold(self):
+        with tempfile.TemporaryDirectory() as td:
+            result = self.run_cli("--profile-create", "Western Sydney Teens", "--parent-region", "au", "--profile-root", td)
+            self.assertIn("profile=western-sydney-teens", result.stdout)
+            manifest = json.loads((Path(td) / "western-sydney-teens" / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(manifest["parent_region"], "au")
+            self.assertEqual(manifest["layer_depth"], 0)
+            self.assertTrue((Path(td) / "western-sydney-teens" / "data" / "phrases.csv").exists())
+
+    def test_profile_mine_from_subtitle_file_and_build_db(self):
+        with tempfile.TemporaryDirectory() as td:
+            subtitle = Path(td) / "sample.srt"
+            subtitle.write_text("1\n00:00:01,000 --> 00:00:02,000\nOka yarning ridgydidge ridgydidge smoko.\n", encoding="utf-8")
+            result = self.run_cli("--profile-mine", "Remote Oka Crew", "--parent-region", "au", "--profile-root", td, "--source", str(subtitle), "--min-count", "1")
+            self.assertIn("profile=remote-oka-crew", result.stdout)
+            lexicon = (Path(td) / "remote-oka-crew" / "data" / "lexicon.csv").read_text(encoding="utf-8")
+            self.assertIn("ridgydidge", lexicon)
+            db = Path(td) / "localiser.sqlite"
+            subprocess.run(
+                [sys.executable, str(ROOT / "core/scripts/build_db.py"), "--profiles-dir", td, "--out", str(db)],
+                cwd=ROOT,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True,
+                check=True,
+            )
+            result2 = self.run_cli("--detect", "--regions", "remote-oka-crew", "--db", str(db), "--json", "ridgydidge smoko")
+            self.assertIn('"region": "remote-oka-crew"', result2.stdout)
+
 
 if __name__ == "__main__":
     unittest.main()

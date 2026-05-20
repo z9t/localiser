@@ -111,6 +111,43 @@ LOCALISER_NAMED_ENTITIES = {
     },
 }
 
+LOCALISER_CREATE_LAYERED_PROFILE = {
+    "name": "localiser_create_layered_profile",
+    "description": "Create an empty reviewable layered profile scaffold under profiles/<slug>. Set parent_region for a country/root layer or parent_profile for a narrower child layer.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "name": {"type": "string"},
+            "parent_region": {"type": "string", "description": "Country/root parent such as au/us/uk/ca. Mutually exclusive with parent_profile."},
+            "parent_profile": {"type": "string", "description": "Existing profile slug/name for narrower layering. Mutually exclusive with parent_region."},
+            "profile_root": {"type": "string", "default": "profiles"},
+            "description": {"type": "string"},
+            "overwrite": {"type": "boolean", "default": False},
+        },
+        "required": ["name"],
+    },
+}
+
+LOCALISER_MINE_LAYERED_PROFILE = {
+    "name": "localiser_mine_layered_profile",
+    "description": "Mine subtitle/transcript/plain-text/YouTube corpora into a reviewable layered profile lexicon scaffold. Candidate rows only; review before use.",
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "name": {"type": "string"},
+            "text": {"type": "string", "description": "Inline corpus text when sources are not supplied."},
+            "sources": {"oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}], "description": "Subtitle/text file paths or YouTube URLs."},
+            "parent_region": {"type": "string"},
+            "parent_profile": {"type": "string"},
+            "profile_root": {"type": "string", "default": "profiles"},
+            "min_count": {"type": "integer", "default": 2},
+            "overwrite": {"type": "boolean", "default": False},
+            "db_path": {"type": "string"},
+        },
+        "required": ["name"],
+    },
+}
+
 TOOLS = [
     LOCALISER_REGIONALISE_TEXT,
     LOCALISER_DETECT_REGION,
@@ -118,6 +155,8 @@ TOOLS = [
     LOCALISER_CULTURAL_CONTEXT,
     LOCALISER_SPORTS_CONTEXT,
     LOCALISER_NAMED_ENTITIES,
+    LOCALISER_CREATE_LAYERED_PROFILE,
+    LOCALISER_MINE_LAYERED_PROFILE,
 ]
 
 TOOLS_BY_NAME = {tool["name"]: tool for tool in TOOLS}
